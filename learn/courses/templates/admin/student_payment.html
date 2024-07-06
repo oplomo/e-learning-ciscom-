@@ -1,0 +1,16 @@
+{% extends "admin.html" %}
+{% load static %}
+
+{% block title %}
+  Register Payment
+{% endblock title %}
+
+{% block content %}
+<h1>Register Payment for {{ enrollment.student.first_name }} {{ enrollment.student.last_name }}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Submit Payment</button>
+</form>
+{% endblock %}

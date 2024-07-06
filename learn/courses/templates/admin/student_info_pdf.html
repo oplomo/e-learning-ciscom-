@@ -1,0 +1,84 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Info PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .student-details, .payment-details {
+            margin-bottom: 20px;
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Student Information</h1>
+
+<div class="student-details">
+    <h2>{{ student.first_name }} {{ student.last_name }}</h2>
+    <p>Username: {{ student.username }}</p>
+    {% if student.email %}
+        <p>Email: {{ student.email }}</p>
+    {% endif %}
+    <h3>Enrolled Courses</h3>
+    <ul>
+        {% for enrollment in enrollments %}
+            {% for course in enrollment.course.all %}
+                <li>{{ course.title }} ({{ course.period_in_weeks }} weeks) - ksh{{ course.fee }}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="payment-details">
+    <h3>Payment History</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Payment Date</th>
+                <th>Amount Paid</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for payment in payments %}
+                <tr>
+                    <td>{{ payment.payment_date }}</td>
+                    <td>{{ payment.amount }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="2">No payments have been made.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Total Summary</h3>
+    <p>Total Amount: ksh {{ total_amount }}</p>
+    <p>Total Paid: ksh {{ total_paid }}</p>
+    <p>Total Balance: ksh {{ total_balance }}</p>
+</div>
+
+</body>
+</html>

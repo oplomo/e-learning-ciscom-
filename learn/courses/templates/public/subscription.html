@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+   subscriptions
+{% endblock title %}
+
+{% block content %}
+
+<div class="oc_title">subscriptions</div>
+
+<div class="sub_table">
+<table>
+    <thead>
+        <tr>
+            <th>course</th>
+            <th>course fee</th>
+            <th>duration</th>
+            <th>is certificate_offered</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for sub in subs  %}
+        <tr>
+            <td><a href="{% url "course_about" sub.id sub.title %}" class="h_link">{{ sub.title }}</a></td>
+            <td>ksh.{{ sub.fee }}</td>
+            <td>{{ sub.period_in_weeks }} weeks</td>
+            <td>
+                {% if sub.international_certification %}
+                   &check;(international_certificate)
+                {% else %}
+                 &check;
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</div>
+{% endblock content %}
+
+

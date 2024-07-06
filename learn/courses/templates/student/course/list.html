@@ -1,0 +1,23 @@
+{% load static %}
+<link href="{% static 'courses/css/styles.css' %}" rel="stylesheet">
+
+
+ <h1 class="right_header">My courses</h1>
+ <div class="module">
+   {% for course in object_list %}
+     <div class="course-info">
+       <h3>{{ course.title }}</h3>
+       <p><a href="{% url "student_course_detail" course.id %}" target="_parent">
+       Access contents</a></p>
+     </div>
+   {% empty %}
+     <p class="each_content cont_title">
+       You are not enrolled in any courses yet.
+        please contact your admin
+     </p>
+   {% endfor %}
+
+   {% if user.is_superuser %}
+          <p>to view this page as a student and not as an administrator:please <a href="{% url "login" %}" target="_blank">login</a> as the specific student.</p>
+   {% endif %}
+ </div>

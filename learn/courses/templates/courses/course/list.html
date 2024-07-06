@@ -1,0 +1,61 @@
+{% load static %}
+<link href="{% static 'courses/css/styles.css' %}" rel="stylesheet">
+
+
+<div class="right_header">
+{% if subject %}
+  {{ subject.title }} courses
+{% else %}
+  All courses
+{% endif %}
+</div>
+
+<div class="module_manager">
+<div class="contents">
+<h3>Subjects</h3>
+<ul id="modules">
+  <li
+{% if not subject %}class="selected"{% endif %}>
+    <a href="{% url "course_list" %}">All</a>
+  </li>
+  {% for s in subjects %}
+    <li>
+      <a {% if subject == s %}class="selected"{% endif %} href="{% url "course_list_subject" s.slug %}">
+        {{ s.title }}
+        <br>
+        <span>
+          {{ s.total_courses }} course{{ s.total_courses|pluralize }} 
+        </span>
+      </a>
+    </li>
+  {% endfor %}
+</ul>
+</div>
+<div class="module  manage_module">
+{% for course in courses %}
+ <div class="each_content each_content_st">
+  {% with subject=course.subject %}
+    <h3>
+      <a href="{% url "course_detail" course.slug %}" target="_parent">
+        {{ course.title }}
+      </a>
+    </h3>
+
+    <p>
+        <a href="{% url "course_list_subject" subject.slug %}" target="_parent">{{ subject }}</a>.
+ 
+          {{ course.total_modules }} modules.
+          Instructor: {{ course.owner.get_full_name }}
+      </p>
+    </div>
+    {% endwith %}
+
+    {% empty %}
+     <p class="each_content cont_title">no course under {{ subject.title }}</p>
+  {% endfor %}
+
+  {% if user.is_superuser %}
+  <p>to view this page as a student and not as an administrator:please <a href="{% url "login" %}" target="_blank">login</a> as the specific student.</p>
+{% endif %}
+</div>
+</div>

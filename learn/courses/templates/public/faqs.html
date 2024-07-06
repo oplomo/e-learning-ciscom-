@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+faqs
+{% endblock title %}
+  
+{% block content %}
+
+<div class="p_title">
+    FREQUENTLY ASKED QUESTIONS (faqs)
+</div>
+
+<div class="fq_parent">
+    {% for q in q %}
+    
+    
+     <div class="q_hold">
+    
+       <div class="question"> 
+            &bullet;{{ q.question }}
+        </div>
+        <div class="answer">
+          {% for a in q.answer.all  %}
+            {{ a.answer }}
+          {% endfor %}
+        </div>
+   
+     </div>
+   
+    {% endfor %}
+</div>
+  <div class="ask"><button class="button"><a href="{% url "contacts" %}" class="askk">ask a question</a></button></div>
+{% endblock content %}
+
+{% block include_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var questions = document.querySelectorAll('.question');
+        questions.forEach(function(question) {
+            question.addEventListener('click', function() {
+                var answer = this.nextElementSibling;
+                if (answer.style.display === 'none' || answer.style.display === '') {
+                    answer.style.display = 'block';
+                } else {
+                    answer.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+{% endblock include_js %}
+
+
+
+

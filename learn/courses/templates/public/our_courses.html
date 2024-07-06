@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+course list
+{% endblock title %}
+
+
+{% block content %}
+  
+<div class="oc_title">our courses</div>
+ 
+<div class="oc_tlinks">
+    <a href="{% url "courses" %}" class="oc_button">all</a>
+    {% for s in sub  %}
+       <a href="{% url "courses" s.id %}" class="oc_button">{{s.title}}</a>
+    {% endfor %}
+</div>
+<div class="oc_show">
+    {% if filter %}
+      {{filter.title}} courses 
+
+    {% else %}
+       all courses
+    {% endif %}
+</div>
+ <div class="oc_clist" id="oc_all" >
+
+        {% for c in courses %}
+           <div class="oc_li"><a href="#{{c.id}}">{{ c.title }}</a>,</div>
+        {% endfor %}
+
+ </div>
+<div class="oc_courses">
+
+    {% for course in courses  %}
+ <div class="oc_hold" id="{{course.id}}">
+    <a href="{% url "course_about" course.id course.title  %}" class="oc_link">
+      
+    <div class="oc_top">
+
+        <div class="hold_left">             
+            <div class="left_img">
+            <img src="{{ course.image.url }}" alt="course image">
+        </div>
+        </div>
+
+        <div class="hold_mid">
+            <div class="mid_title">{{ course.title }}</div> 
+
+         <div class="mid_overview">
+            {{ course.overview }}
+        </div>
+    </div>
+</div>
+
+<div class="oc_down">
+<div class="oc_bottom">            
+    
+        <div class="hold_right">
+            ksh{{ course.fee }}
+        </div>
+
+            <div class="mid_weeks">
+               {{ course.period_in_weeks }} weeks
+            </div>
+            
+                {% if course.international_certification %}
+                <div class="mid_weeks">
+                  international cerfificate awarded
+                </div>
+                {% endif %}
+            
+        </div>
+         <div class="oc_link"><a href="{% url "course_about" course.id course.title %}">view course info</a></div>
+    </div>
+</a>
+    </div>
+
+    {% endfor %}
+
+</div>
+{% endblock content %}

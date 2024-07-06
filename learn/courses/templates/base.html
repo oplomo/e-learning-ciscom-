@@ -1,0 +1,187 @@
+{% load static %}
+{% load course %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}
+    </title>
+    <script src="https://kit.fontawesome.com/1ca4691ddb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" /> 
+    <link href="{% static 'courses/css/styles.css' %}" rel="stylesheet">
+    <link rel="shortcut icon" href="{% static "courses/images/globe.jpeg" %}" type="image/x-icon">
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var moreButton = document.querySelector('#more-button');
+            var moreLinks = document.querySelector('.more-links');
+            
+            moreButton.addEventListener('click', function() {
+                if (moreLinks.style.display === 'none' || moreLinks.style.display === '') {
+                    moreLinks.style.display = 'block';
+                    moreButton.textContent = 'Less';
+                } else {
+                    moreLinks.style.display = 'none';
+                    moreButton.textContent = 'More';
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    
+    <div class="header">
+        {% if user.is_superuser%}
+        <div class="top_menu">
+          
+            <span><a href="{% url "admin_dashboard" %}">administrator dashboard</a></span>
+        </div>
+        {% endif %}
+        <div class="menu">
+            <a href="javascript:void(0);" class="m_toggle-button" onclick="toggleMenu()">&#9776;</a>
+            <div class="menu_list navbar-links">
+                <div class="item">
+                    <a href="{% url "home" %}">home</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url "courses" %}">courses</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url "partners" %}">partners</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url "subscription" %}">subscriptions</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url "about" %}">about us</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url "contacts" %}">contact information</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url "faqs" %}">faqs</a>
+                </div>
+    
+                {% if request.user|has_group:"instractor" %}
+                <div class="item">
+                    <a href="{% url "manage_course_list" %}">instructors dashboard</a>
+                </div>
+                 {% endif %}
+
+                {% if request.user|has_group:"students" %}
+
+                <div class="item">
+                    <a href="{% url "student_dashboard" %}">students dashboard</a>                </div>
+                 
+                {% endif %}
+                {% comment %} 
+                <div>
+                    <a href="{% url "check_data" %}">check data</a>
+                </div> 
+                {% endcomment %}
+    
+                <div class="right_menu">
+                    {% if request.user.is_authenticated %}
+                    <div class="item">
+                        <form action="{% url "logout" %}" method="POST" class="log_form">
+                            {% csrf_token %}
+                            <button type="submit">sign out</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="item">
+                        <a href="{% url "login" %}">Sign in</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li class="{{ message.tags }}">
+                <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                {{ message }}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+    <div class="content">
+        {% block content %}{% endblock content %}
+    </div>
+
+    <div class="footer">
+
+
+    <div class="top_foot">
+
+    <div class="fot_menu">
+       <div class="fmn"><a href="{% url "privacy" %}">privacy policy</a></div>
+       <div class="fmn"><a href="{% url "terms" %}">terms and conditions</a></div>
+       <div class="fmn"><a href="{% url "contacts" %}">contact us</a></div>
+       <div class="fmn"><a href="{% url "about" %}">about us</a></div>
+
+
+    </div>
+
+
+    <div class="footer_icons">
+        <div class="ic"><a href=""><i class="fa-brands fa-facebook"></i></a></div>
+        <div class="ic"><a href=""><i class="fa-brands fa-twitter"></i></a></div>
+        <div class="ic"><a href=""><i class="fa-brands fa-linkedin"></i></a></div>
+    </div>
+
+    </div>
+
+    <div class="btm_foot">
+      <small>website by adams square (adamssquare4@gmail.com)/+254-720-659-798</small>
+    </div>
+
+
+
+
+    {% block include_js %}
+  {% endblock %}
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+        // DOM loaded
+               {% block domready %}
+               {% endblock %}
+             })
+           </script>
+
+           <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                var questions = document.querySelectorAll('.more');
+                questions.forEach(function(question) {
+                    question.addEventListener('click', function() {
+                        var answer = this.nextElementSibling;
+                        if (answer.style.display === 'none' || answer.style.display === '') {
+                            answer.style.display = 'block';
+                        } else {
+                            answer.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        </script>
+
+        <script>
+ 
+function toggleMenu() {
+    const navbarLinks = document.querySelector('.navbar-links');
+    navbarLinks.classList.toggle('active');
+}
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+   check_data
+{% endblock title %}
+{% block content %}
+
+<h1>welcome. check your data here</h1>
+<p>{{ co }}</p>
+{% for co in co.students.all %}
+<p>{{ co }}</p>
+{% endfor %}
+{% endblock content %}
+
+
+

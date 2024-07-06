@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+ {% if object %}
+   Edit course "{{ object.title }}"
+ {% else %}
+   Create a new course
+ {% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="mine_title">
+   {% if object %}
+     Edit course "{{ object.title }}"
+   {% else %}
+     Create a new course
+   {% endif %}
+</div>
+  
+<div class="module module_form">
+  <div class="mine_hold_form">
+    <div class="mine_c_title">Course info</div>
+    <form id="course-form" method="post" enctype="multipart/form-data">
+      {{ form.as_p }}
+      {% csrf_token %}
+      <p><input id="submit-button" type="submit" value="Save course" class="button" style="background-color:black; opacity:.1" disabled></p>
+    </form>
+  </div>
+</div>
+
+{% block include_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const form = document.getElementById('course-form');
+    const submitButton = document.getElementById('submit-button');
+
+    const checkFormValidity = () => {
+      const isValid = [...form.elements].every(input => {
+        if (input.type !== "submit" && input.type !== "button") {
+          return input.value.trim() !== "";
+        }
+        return true;
+      });
+      submitButton.disabled = !isValid;
+      if (isValid) {
+        submitButton.style.backgroundColor = "blue";
+        submitButton.style.opacity = 1;
+      } else {
+        submitButton.style.backgroundColor = "black";
+        submitButton.style.opacity = 0.1;
+      }
+    };
+
+    form.addEventListener('input', checkFormValidity);
+    checkFormValidity(); // Initial check in case form is pre-filled
+  });
+</script>
+{% endblock include_js %}
+{% endblock content %}

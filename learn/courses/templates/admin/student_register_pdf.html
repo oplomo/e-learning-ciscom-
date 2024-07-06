@@ -1,0 +1,77 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Register PDF</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .filter-form, .register_table {
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #000;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Student Register</h1>
+
+<div class="register_table">
+    <table>
+        <thead>
+            <tr>
+                <th>Username/ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Enrollment Date</th>
+                <th>Courses</th>
+                <th>Amount</th>
+                <th>Amount Paid</th>
+                <th>Balance</th>
+                <th>Certificate Issued</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for data in student_data %}
+          <tr>
+              <td>{{ data.student.username }}</td>
+              <td>{{ data.student.first_name }}</td>
+              <td>{{ data.student.last_name }}</td>
+              <td>{{ data.student.enrollments.enrollment_date }}</td>
+              <td>
+                  <ul>
+                      {% for course in data.student.enrollments.course.all %}
+                          <li>{{ course.title }}</li>
+                      {% endfor %}
+                  </ul>
+              </td>
+              <td>{{ data.total_amount }}</td>
+              <td>{{ data.total_paid }}</td>
+              <td>{{ data.fee_balance }}</td>
+              <td>
+                {% if data.student.enrollments.certificate_issued %}yes{% else %}no{% endif %}
+              </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+</body>
+</html>

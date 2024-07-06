@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+partners
+{% endblock title %}
+
+
+{% block content %}
+  <div class="p_title">partners</div>
+
+  <div class="pat_main">
+    {% for pat in pat %}
+      <div class="pat_div">
+
+        <div class="pat_name">
+            <div class="p_name"><a href="{{pat.website}}" target="_blank">{{ pat.name }}</a></div>
+            {% if pat.logo %}
+            <div class="p_logo"><img src="{{ pat.logo.url }}" alt="{{ pat.name }} logo"></div>
+            {% endif %}
+        </div>
+          <div class="pat_inf">
+            <div class="pat_rel">
+                {{ pat.description }}
+            </div>
+            {% if pat.image %}
+            <div class="pat_pic">
+                <img src="{{ pat.image.url }}" alt="{{pat.name}} picture">
+            </div>  
+            {% endif %}          
+       
+          </div>
+        <div class="pat_ftr">
+            <p class="pat_site">
+                <a href="{{ pat.website }}">{{ pat.website }}</a>
+            </p>
+        </div>
+
+      </div>
+    
+    {% endfor %}
+  </div>
+
+{% endblock content %}

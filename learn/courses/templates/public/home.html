@@ -1,0 +1,247 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+home
+{% endblock title %}
+
+
+{% block content %}
+
+<div class="home_intro">
+    <div class="intro">
+        <p class="intro_motto">{{ rct.motto }}</p>
+        <p class="intro_p">{{ rct.intro }}</p>
+        <div class="intro_links">
+             <a href="{% url "courses" %}" class="button h_button">courses</a>
+             <a href="{% url "subscription" %}" class="button h_button">subscription</a>
+             <a href="{% url "partners" %}" class="button h_button">partners</a>
+             <a href="{% url "faqs" %}" class="button h_button">faqs</a>
+        </div>
+    </div>
+
+
+  
+      <!-- Slider main container -->
+      <div class="swiper">
+          <!-- Additional required wrapper -->
+          <div class="swiper-wrapper">
+              <!-- Slides -->
+              <div class="swiper-slide ima" id="ser1">
+                  
+                <img src="{% static "courses/images/cisco.jpg" %}" alt="intro image">
+                       <!--content-->
+
+              </div>
+              <div class="swiper-slide ima" id="ser2">
+
+                <img src="{% static "courses/images/cybersecurity.jpg" %}" alt="intro image">
+                      <!--content-->
+
+              </div>
+              <div class="swiper-slide ima" id="ser3">
+
+                <img src="{% static "courses/images/data analysis.jpg" %}" alt="intro image">
+                   <!--content-->
+
+              </div>
+              <div class="swiper-slide ima" id="ser4">
+
+                <img src="{% static "courses/images/mobile app.jpg" %}" alt="intro image">
+                     <!--content-->
+
+              </div>
+              <div class="swiper-slide ima" id="ser5">
+
+                <img src="{% static "courses/images/hardware.jpg" %}" alt="intro image">
+                  <!--content-->
+
+              </div>
+              <div class="swiper-slide ima" id="ser6">
+
+                <img src="{% static "courses/images/project planning.jpg" %}" alt="intro image">                 
+                 <!--content-->
+                      
+                 
+              </div>
+              <div class="swiper-slide ima" id="ser7">
+
+                <img src="{% static "courses/images/security.png" %}" alt="intro image">
+
+                <!--content-->
+                     
+                
+             </div>
+             <div class="swiper-slide ima" id="ser8">
+
+              <img src="{% static "courses/images/mobile app.jpg" %}" alt="intro image">              
+              <!--content-->
+                   
+              
+           </div>
+          </div>
+          <!-- If we need pagination -->
+          {% comment %} <div class="swiper-pagination"></div> {% endcomment %}
+          <!-- If we need navigation buttons -->
+          <div class="swiper-button-prev"></div>
+          <div class="swiper-button-next"></div>
+      </div>
+    
+
+
+</div>
+
+
+<div class="home_courses">
+    <div class="intro_motto">explore our courses</div>
+    <div class="hc_icons">
+         {% for c in course %}
+           <div class="c_hold">
+            <div class="c_icon">
+                <img src="{{ c.image.url }}" alt="course icon" class="home_icon">
+            </div>
+            <a href="{% url "course_about" c.id c.title %}" class="h_link">
+              <div class="c_name">{{ c.title }}</div></a>
+           </div>
+      
+         {% endfor %}
+    </div>
+    <div class="hm_more">
+      <a href="{% url "courses" %}">more&rarr;</a>
+    </div>
+</div>
+
+
+<div class="home_subject">
+ <div class="intro_motto">subjects offered at {{ rct.name }}</div>
+  <div class="subject_holder">
+    {% for s in subject %}
+    
+       <div class="subject_box">
+         <div class="subject_image">
+              <div class="subject_images">
+            {% for subimage in s.courses.all %}
+              <div class="subimage">
+                 <img src="{{ subimage.image.url }}">
+              </div>
+            {% endfor %}
+            {% if s.title == "computer packages" %}
+              <div class="subimage">
+                <img src="{% static "courses/images/logo-microsoft-publisher-256.png" %}" alt="">
+              </div>
+              <div class="subimage">
+                <img src="{% static "courses/images/Microsoft Access.png" %}" alt="">
+              </div>
+              <div class="subimage">
+                <img src="{% static "courses/images/Microsoft Powerpoint 2013.jpg" %}" alt="">
+              </div>
+              <div class="subimage">
+                 <img src="{% static "courses/images/Microsoft Word.jpg" %}" alt="">
+
+              </div>
+            {% endif %}
+        </div>
+        <div class="s_name">
+            {{ s.title }}
+        </div>
+         </div>
+           
+         
+         <div class="appear">
+
+             <div class="sub_info">
+                 <div class="sub_det">
+                    <a href="{% url "courses" s.id %}">view more &rarr;</a>
+                </div>
+                
+             </div>
+  
+         </div>
+       </div>
+    
+    
+    {% endfor %}
+  </div>
+</div>
+
+<div class="intro_motto">become on of us</div>
+<div class="steps_hld">
+ 
+  <div class="step">
+    <div class="st_no">1</div>
+    <div class="instruction">Visit our website to explore the diverse range of courses we offer. Carefully review the course descriptions to find the one that aligns with your educational and career goals.</div>
+  </div>
+
+  <div class="step">
+    <div class="st_no">2</div>
+    <div class="instruction">Once you have selected a course, reach out to our admissions team for detailed information on the enrollment process. You can <a href="{% url "contacts" %}">contact</a> us via phone, email, or by visiting our offices at JKUAT. Our team will provide you with all the necessary details and answer any questions you may have.</div>
+  </div>
+
+  <div class="step">
+    <div class="st_no">3</div>
+    <div class="instruction">After discussing your chosen course with our admissions team, follow their instructions to complete your enrollment. This may include providing necessary identification and making the required payment. Once your enrollment is confirmed, you will receive information on how to begin your course, including schedules and access to course materials. Welcome to {{rct.name}}, where your educational journey begins!</div>
+  </div>
+</div>
+
+<div class="intro_motto">testimonials</div>
+
+<div class="home_testimonials">
+    {% for test in testimonial %}
+     <div class="testimony">
+  <div class="test_image">
+    <div class="tes_name">{{ test.name|truncatechars_html:3 }}</div>
+    <div class="test_at">
+      <div class="test_det">{{ test.name }}</div>
+      <div class="test_det">{{ test.date }}</div>
+    </div>
+
+  </div>
+   <div class="test_p">
+    {{ test.testimony }}
+   </div>
+   
+   </div>
+  {% endfor %}
+</div>
+
+<div class="a_info">
+  {{rct.outro}}
+</div>
+{% endblock content %}
+
+
+{% block include_js %}
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+    const swiper = new Swiper('.swiper', {
+        autoplay: {
+            delay: 6000,
+            disableOnInteraction: false,
+
+        },<!--for aouto,,if you dont want then delete the delay and the disableOnInteraction keys-->
+
+        loop: true,
+
+        // If we need pagination
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+
+        // Navigation arrows
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+
+    }); 
+</script>
+
+
+ 
+{% endblock include_js %}
+
+
+
+
+

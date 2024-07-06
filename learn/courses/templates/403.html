@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}permision denied{% endblock title %}
+
+{% block content %}
+
+<h1 style="color:red">Permission Denied</h1>
+<p>Sorry, you do not have permission to view this page. please contact admin <span><a href="{% url "home" %}">home</a></span></p>
+
+
+{% endblock content %}
+
+
+

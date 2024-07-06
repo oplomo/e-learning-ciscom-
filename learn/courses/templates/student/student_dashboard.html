@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+
+{% if subject %}
+{{ subject.title }} courses
+{% else %}
+All courses
+{% endif %}
+{% endblock %}
+
+{% block content %}
+<div class="mine_title"><a href="{% url "course_list" %}" target="student_course">all courses </a> &nbsp;|&nbsp; <a href="{% url "student_course_list" %}" target="student_course">my courses</a> &nbsp;&nbsp; <span class="mine_name">( {{ request.user.first_name }} )</span> </div>
+<iframe src="{% url "student_course_list" %}" frameborder="0" name="student_course">
+
+</iframe>
+{% endblock content %}
+

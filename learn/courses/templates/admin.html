@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}
+    </title>
+    <link href="{% static 'courses/css/styles.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1ca4691ddb.js" crossorigin="anonymous"></script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const menuList = document.querySelector('.menu_list');
+            const rightMenu = document.querySelector('.right_menu');
+        
+            menuToggle.addEventListener('click', function() {
+                menuList.classList.toggle('active');
+                rightMenu.classList.toggle('active');
+            });
+        });
+        
+    </script>
+</head>
+<body>
+    
+    <div class="header">
+        <div class="menu">
+            <div class="m_toggle-button">
+                <!-- Hamburger menu icon for mobile view -->
+                <button class="menu-toggle" aria-label="Open menu">
+                    ☰
+                </button>
+            </div>
+    
+            <div class="menu_list">
+
+    
+                <div class="item">
+                    <a href="{% url 'home' %}">back to site</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url 'admin_dashboard' %}">students register</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url 'student_admision' %}">register new student</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url 'admin:index' %}" target="_blank">site administration</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url 'manage_course_list' %}">instractors dashboard</a>
+                </div>
+    
+                <div class="item">
+                    <a href="{% url 'student_dashboard' %}">students dashboard</a>
+                </div>
+            </div>
+    
+            <div class="right_menu">
+                {% if request.user.is_authenticated %}
+                    <div class="item">
+                        <form action="{% url 'logout' %}" method="POST">
+                            {% csrf_token %}
+                            <button type="submit">sign out</button>
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="item">
+                        <a href="{% url 'login' %}">Sign in</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+   
+  <div class="admin_content">
+    {% block content %}{% endblock content %}
+  </div>
+
+</body>
+</html>

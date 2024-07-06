@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+ {% block title %}My courses{% endblock %}
+ {% block content %}
+  <div class="mine_title">My courses &nbsp;&nbsp; <span class="mine_name">( {{ request.user.first_name }} )</span> </div>
+  <div class="module">
+    {% for course in object_list %}
+    <div class="course-info">
+        <div class="mine_c_title">{{ course.title|upper }}</div>
+        <p>
+          <a href="{% url 'course_edit' course.id %}">Edit</a>
+          <a href="{% url 'course_delete' course.id %}">Delete</a>
+          <a href="{% url "course_module_update" course.id %}">Edit modules</a>
+         {% if course.modules.count > 0 %}
+  <a href="{% url "module_content_list" course.modules.first.id %}">
+    Manage contents
+  </a>
+ {% endif %} 
+
+        </p>
+      </div>
+    {% empty %}
+      <div class="mine_empty">You haven't created any courses yet.</div>
+    {% endfor %}
+    <div class="mine_butt">
+      <a href="{% url 'course_create' %}" class="button">Create new course</a>
+    </div>
+  </div>
+
+  {% if user.is_superuser %}
+  <p>to view this page as an instractor and not as an administrator:please <a href="{% url "login" %}" target="_blank">login</a> as the specific instractor.</p>
+{% endif %}
+ {% endblock %}

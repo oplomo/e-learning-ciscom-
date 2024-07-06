@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ course.title }}{% endblock title %}
+
+{% block content %}
+<div class="cou_parent">
+    <div class="cou_img">
+        <img src="{{course.image.url}}" alt="{{course.title}} image" >
+    </div>
+    <div class="cou_more">
+        <div class="cou_title">{{ course.title }}</div>
+        
+        <div class="cou_ksh">ksh{{ course.fee }}</div>
+
+        <div class="cou_exp">benefit of {{course.title}} certificate</div>
+        <div class="cou_benefit">{{ course.cert_benefit }}</div>
+ 
+        {% if course.international_certification %}
+         <div class="mid_weeks"><mark> we award internationl certicicate for this course </mark></div>
+        {% endif %}
+ 
+        <div class="cou_ksh">learning period &rarr;{{ course.period_in_weeks }} weeks</div>
+  
+        <div class="cou_benefit">{{course.overview}}</div>
+
+    </div>
+</div>
+
+
+
+<div class="intrest">
+    <h1>contact us to start a journey in learning {{course.title }}</h1>
+  {% include "contact_information.html" %}
+</div>
+
+
+
+{% endblock content %}
+
+

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+ {% if object %}
+   Edit content "{{ object.title }}"
+ {% else %}
+   Add new content
+ {% endif %}
+{% endblock %}
+{% block content %}
+ <div class="mine_title">
+   {% if object %}
+     Edit content "{{ object.title }}"
+   {% else %}
+     Add new content
+   {% endif %}
+ </div>
+ <div class="module module_form">
+  <div class="mine_hold_form">
+
+   <div class="mine_c_title">Course info</div>
+   <form action="" method="post" enctype="multipart/form-data">
+     {{ form.as_p }}
+     {% csrf_token %}
+     <div><input type="submit" value="Save content" class="button"></div>
+    </form>
+</div>
+</div>
+{% endblock %}

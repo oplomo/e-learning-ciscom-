@@ -1,0 +1,710 @@
+[
+{
+  "model": "courses.subject",
+  "pk": 1,
+  "fields": {
+    "title": "software development",
+    "slug": "software-development"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 2,
+  "fields": {
+    "title": "networking",
+    "slug": "networking"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 4,
+  "fields": {
+    "title": "computer packages",
+    "slug": "computer-packages"
+  }
+},
+{
+  "model": "courses.subject",
+  "pk": 8,
+  "fields": {
+    "title": "business",
+    "slug": "business"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 4,
+  "fields": {
+    "owner": 1,
+    "subject": 8,
+    "title": "enterprenuership",
+    "slug": "enterprenuership",
+    "overview": "Discover how our entrepreneurship course empowers you to learn essential skills for starting and managing your own business effectively. From crafting comprehensive business plans and understanding market dynamics to mastering financial management and innovative marketing strategies, our program equips you with the knowledge and tools needed to thrive in the competitive world of entrepreneurship. Whether you're launching a startup or aiming to enhance your business acumen, our hands-on approach ensures you gain practical insights and confidence to turn your ideas into successful ventures. Join us and embark on a journey where creativity meets strategy, and entrepreneurship becomes your path to success.",
+    "created": "2024-06-18T08:57:18.945Z",
+    "image": "images/course/photos/enterprenuership.jpg",
+    "cert_benefit": "With a certificate in Entrepreneurship, you can pursue careers as an Entrepreneur, Startup Founder, or Small Business Owner. This course equips you with the knowledge to launch and grow businesses, innovate new products/services, develop business plans, and navigate challenges in competitive markets.",
+    "international_certification": true,
+    "period_in_weeks": 8,
+    "fee": "40000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 5,
+  "fields": {
+    "owner": 1,
+    "subject": 8,
+    "title": "strategic management",
+    "slug": "strategic-management",
+    "overview": "Explore our strategic management course and delve into the art and science of making informed decisions that steer organizations toward sustainable growth and success. Gain expertise in analyzing competitive landscapes, formulating strategic plans, and executing them effectively. Learn how to leverage organizational resources, anticipate market shifts, and adapt strategies to achieve long-term objectives. Whether you're an aspiring manager or a seasoned executive, our course equips you with the strategic thinking and leadership skills necessary to navigate complexities, drive innovation, and lead your organization to new heights. Join us and elevate your strategic management capabilities to excel in today's dynamic business environment.",
+    "created": "2024-06-18T08:58:36.450Z",
+    "image": "images/course/photos/strategic_managment.jpg",
+    "cert_benefit": "Earning a Strategic Management certificate prepares you for roles like Strategic Planner, Business Development Manager, or Corporate Strategist. You'll gain skills in formulating business strategies, analyzing market trends, leading organizational change initiatives, and enhancing competitive positioning.",
+    "international_certification": true,
+    "period_in_weeks": 8,
+    "fee": "40000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 6,
+  "fields": {
+    "owner": 1,
+    "subject": 8,
+    "title": "digital marketing",
+    "slug": "digital-marketing",
+    "overview": "Discover the dynamic world of digital marketing and harness its power to propel businesses forward in today's digital age. Our digital marketing course empowers you with essential skills to navigate online platforms, optimize digital campaigns, and engage target audiences effectively. Learn to leverage SEO, social media, email marketing, and analytics to enhance brand visibility, generate leads, and drive conversions. Gain insights into consumer behavior, digital trends, and innovative marketing strategies that maximize ROI and foster business growth. Whether you're launching a career in marketing or seeking to expand your digital footprint, our comprehensive course equips you with the knowledge and tools to thrive in the competitive landscape of digital marketing. Join us and transform your marketing prowess into measurable success in the digital realm.",
+    "created": "2024-06-18T09:00:29.104Z",
+    "image": "images/course/photos/digital_marketing.jpg",
+    "cert_benefit": "A certificate in Digital Marketing can lead to roles such as Digital Marketing Specialist, SEO Analyst, or Social Media Manager. You'll learn to develop and execute digital marketing campaigns, optimize online presence, analyze campaign performance, and drive customer engagement, enhancing your marketing expertise.",
+    "international_certification": true,
+    "period_in_weeks": 4,
+    "fee": "35000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 7,
+  "fields": {
+    "owner": 1,
+    "subject": 2,
+    "title": "ethical hacking advanced",
+    "slug": "ethical-hacking-advanced",
+    "overview": "Embark on a transformative journey into the world of ethical hacking, where you'll master the art of safeguarding digital systems and networks from cyber threats. Our ethical hacking course equips you with cutting-edge techniques and methodologies used by cybersecurity professionals to identify vulnerabilities and fortify defenses. Dive deep into penetration testing, vulnerability assessment, and ethical hacking principles to uncover security loopholes before malicious hackers do. Gain hands-on experience with industry-standard tools and techniques to simulate real-world cyber attacks and develop proactive security measures. Whether you're aiming to enhance your cybersecurity career or protect your organization's digital assets, our comprehensive course prepares you to stay ahead in the ever-evolving field of ethical hacking. Join us and become a trusted guardian of digital integrity and cybersecurity excellence.",
+    "created": "2024-06-18T09:02:11.949Z",
+    "image": "images/course/photos/hacking.jpg",
+    "cert_benefit": "With a certificate in Ethical Hacking Advanced, you can pursue careers as an Ethical Hacker, Penetration Tester, or Security Consultant. This course teaches you to test and secure networks and applications, identify vulnerabilities, and simulate cyber-attacks to improve organizational security.",
+    "international_certification": true,
+    "period_in_weeks": 4,
+    "fee": "50000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 8,
+  "fields": {
+    "owner": 1,
+    "subject": 2,
+    "title": "cyber security",
+    "slug": "cyber-security",
+    "overview": "Explore the dynamic realm of cybersecurity and safeguard the digital frontier with our comprehensive course. Delve into the intricate world of cyber threats, learn advanced defense strategies, and acquire the skills to protect sensitive data and networks. Discover essential topics such as cryptography, network security, incident response, and ethical hacking techniques. Gain hands-on experience with industry-standard tools and simulations to mitigate risks and fortify defenses against evolving cyber threats. Whether you're starting a career in cybersecurity or enhancing your knowledge, our course equips you with the expertise to navigate the complexities of cybersecurity and secure digital environments with confidence. Join us and become a guardian of digital resilience and cyber defense expertise.",
+    "created": "2024-06-18T09:04:02.046Z",
+    "image": "images/course/photos/cybersecurity.jpg",
+    "cert_benefit": "A Cyber Security certificate can lead to roles such as Cybersecurity Analyst, Information Security Specialist, or Incident Responder. You'll learn to identify and mitigate security threats, monitor security operations, conduct vulnerability assessments, and ensure data protection, safeguarding organizations from cyber threats.",
+    "international_certification": true,
+    "period_in_weeks": 4,
+    "fee": "20000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 9,
+  "fields": {
+    "owner": 1,
+    "subject": 2,
+    "title": "Cisco Certified Network Associate (ccna)",
+    "slug": "cisco-certified-network-associate",
+    "overview": "Embark on a journey into the fundamental principles of networking with our CCNA (Introduction to Networking) course. Dive into the essentials of computer networks, understanding how data is transmitted across interconnected devices worldwide. Explore key concepts such as network protocols, IP addressing, routing, switching, and network security fundamentals. Gain practical skills through hands-on labs and simulations using industry-standard tools. Whether you're a novice looking to start your networking career or seeking to solidify your networking knowledge, our CCNA course provides a robust foundation. Join us and pave the way to mastering networking essentials and preparing for industry-recognized certifications",
+    "created": "2024-06-18T09:09:42.729Z",
+    "image": "images/course/photos/Cisco_g6wLaJY.jpg",
+    "cert_benefit": "Earning a CCNA certification prepares you for careers like Network Technician, Support Engineer, or Help Desk Technician. You'll gain the skills to configure and troubleshoot network devices, implement network security measures, and maintain network infrastructure, ensuring smooth and secure network operations.",
+    "international_certification": true,
+    "period_in_weeks": 8,
+    "fee": "30000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 10,
+  "fields": {
+    "owner": 1,
+    "subject": 8,
+    "title": "caregiving",
+    "slug": "caregiving",
+    "overview": "Delve into the compassionate world of caregiving with our specialized course. Learn essential skills to provide nurturing care and support to individuals in need. Explore topics such as healthcare basics, patient communication, safety protocols, and emotional support techniques. Gain hands-on experience through practical simulations and case studies, preparing you to excel in various caregiving settings. Whether you're embarking on a career path in healthcare or enhancing your caregiving skills, our course equips you with the knowledge and empathy needed to make a positive impact in people's lives. Join us and discover the fulfilling journey of caregiving today.",
+    "created": "2024-06-18T09:11:28.765Z",
+    "image": "images/course/photos/care.jpg",
+    "cert_benefit": "A certificate in Caregiving can lead to roles such as Caregiver, Healthcare Assistant, or Elder Care Specialist. You'll learn to provide compassionate care, support daily living activities, monitor health conditions, and ensure the wellbeing of individuals in your care, making a positive impact on their lives.",
+    "international_certification": true,
+    "period_in_weeks": 4,
+    "fee": "90000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 11,
+  "fields": {
+    "owner": 1,
+    "subject": 4,
+    "title": "international computer digital packages",
+    "slug": "international-computer-digital-packages",
+    "overview": "Explore the dynamic world of international computer digital packages with our comprehensive course. Dive into advanced topics covering global digital technologies, cross-border communication strategies, and international business practices. Gain insights into diverse digital platforms, global market trends, and effective digital marketing techniques tailored for international audiences. Whether you're aiming to expand your global business acumen or launch an international digital strategy, our course provides essential skills and knowledge to navigate the interconnected digital landscape successfully. Join us and unlock the potential of international computer digital packages toda",
+    "created": "2024-06-18T09:13:05.967Z",
+    "image": "images/course/photos/Microsoft_Office.png",
+    "cert_benefit": "With a certificate in International Computer Digital Packages, you can work as an International Business Coordinator, Project Manager, or Digital Marketing Specialist. This course equips you with the digital tools for global communication, project management, and collaboration across international teams, enhancing your global business capabilities.",
+    "international_certification": true,
+    "period_in_weeks": 8,
+    "fee": "30000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 12,
+  "fields": {
+    "owner": 1,
+    "subject": 1,
+    "title": "devnet associate programming",
+    "slug": "devnet-associate-programming",
+    "overview": "The DevNet Associate Programming course delves into the fundamentals of software development within the context of network automation and programmability. Participants will learn essential programming skills tailored for network automation, including Python scripting, API utilization, and software development best practices. Through hands-on exercises and real-world scenarios, you'll gain proficiency in automating network tasks, enhancing network efficiency, and integrating network functions with software applications. Whether you're a network engineer looking to streamline operations or a developer venturing into network automation, this course equips you with the foundational programming knowledge necessary to succeed in the DevNet Associate certification and beyond.",
+    "created": "2024-06-18T09:14:32.292Z",
+    "image": "images/course/photos/Cisco_C29GuMA.jpg",
+    "cert_benefit": "Earning a DevNet Associate Programming certificate can lead to careers such as Network Automation Engineer, DevOps Engineer, or Cloud Solutions Architect. You'll gain skills in automating network operations, developing scripts and applications for network management, and integrating APIs for network automation.",
+    "international_certification": true,
+    "period_in_weeks": 4,
+    "fee": "15000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 13,
+  "fields": {
+    "owner": 1,
+    "subject": 2,
+    "title": "Cisco certified network professional (ccnp)",
+    "slug": "cisco-certified-network-professional",
+    "overview": "The Cisco Certified Network Professional (CCNP) certification is designed for network professionals who aim to advance their skills in designing, implementing, and managing Cisco networks. It builds on the foundational knowledge covered in the CCNA certification and delves deeper into advanced networking concepts and technologies. CCNP-certified professionals are proficient in areas such as routing and switching, security, wireless networking, collaboration, data center, and service provider technologies.",
+    "created": "2024-06-18T09:16:10.115Z",
+    "image": "images/course/photos/Cisco.jpg",
+    "cert_benefit": "A CCNP certification prepares you for roles like Network Engineer, Network Administrator, or Systems Engineer. You'll learn to design, implement, and manage complex network solutions, troubleshoot network issues, and ensure network security, making you a valuable asset in the IT infrastructure field.",
+    "international_certification": true,
+    "period_in_weeks": 8,
+    "fee": "60000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 14,
+  "fields": {
+    "owner": 1,
+    "subject": 1,
+    "title": "programming esssentials in python",
+    "slug": "programming-esssentials-in-python",
+    "overview": "Explore the power and versatility of Python programming with our comprehensive courses. Python is renowned for its simplicity, readability, and vast applications—from web development to artificial intelligence and scientific computing. Whether you're a beginner or an experienced coder, Python offers a seamless learning experience with its clear syntax and extensive library support. Join us and embark on a journey to master one of the most popular and influential programming languages in the world",
+    "created": "2024-06-18T09:17:57.816Z",
+    "image": "images/course/photos/icons8-python-48.png",
+    "cert_benefit": "With a certificate in Programming Essentials in Python, you can pursue roles such as Software Developer, Data Analyst, or Automation Engineer. This course teaches you to write efficient Python code, manipulate data structures, build applications, and automate tasks, enhancing your programming expertise.",
+    "international_certification": false,
+    "period_in_weeks": 4,
+    "fee": "10000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 15,
+  "fields": {
+    "owner": 1,
+    "subject": 1,
+    "title": "javascript essentials",
+    "slug": "javascript-essentials",
+    "overview": "Dive into the dynamic world of JavaScript with our courses designed to unlock its full potential. JavaScript is the language of the web, empowering developers to create interactive and responsive websites. From enhancing user interfaces with modern frameworks like React and Vue.js to enabling server-side development with Node.js, JavaScript continues to shape the digital landscape. Whether you're new to coding or looking to deepen your skills, our courses provide hands-on learning opportunities to harness JavaScript's versatility and innovation",
+    "created": "2024-06-18T09:19:25.357Z",
+    "image": "images/course/photos/icons8-javascript-48.png",
+    "cert_benefit": "Earning a certificate in JavaScript Essentials can lead to careers like Front-End Developer, Web Developer, or UI/UX Designer. You'll gain the skills to build interactive web pages, enhance user experience, and leverage JavaScript frameworks like React and Angular, making you proficient in modern web development.",
+    "international_certification": true,
+    "period_in_weeks": 4,
+    "fee": "10000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 16,
+  "fields": {
+    "owner": 1,
+    "subject": 1,
+    "title": "artificial inteligence",
+    "slug": "artificial-inteligence",
+    "overview": "Explore the frontier of technology with our Artificial Intelligence courses, where you can delve into the realms of machine learning, neural networks, and intelligent systems. Discover how AI is transforming industries, from healthcare to finance, and gain the skills to build algorithms that can learn and adapt. Whether you're intrigued by natural language processing, computer vision, or autonomous robotics, our courses offer a hands-on approach to mastering AI concepts and applications. Join us in shaping the future of technology with Artificial Intelligence",
+    "created": "2024-06-18T09:20:25.530Z",
+    "image": "images/course/photos/a.i.jpg",
+    "cert_benefit": "A certificate in Artificial Intelligence opens up opportunities in roles such as Machine Learning Engineer, AI Specialist, or Data Scientist. You'll learn to develop AI-driven solutions, implement machine learning algorithms, analyze data patterns, and automate processes, positioning you at the forefront of technology innovation.",
+    "international_certification": false,
+    "period_in_weeks": 8,
+    "fee": "50000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 22,
+  "fields": {
+    "owner": 1,
+    "subject": 1,
+    "title": "data analysis",
+    "slug": "data-analysis",
+    "overview": "Dive into the world of data with our comprehensive courses in data analysis. Learn essential techniques for cleaning, analyzing, and interpreting data to extract meaningful insights. Whether you're exploring trends, making predictions, or optimizing processes, our courses empower you with the skills needed to leverage data effectively.",
+    "created": "2024-06-18T09:37:53.268Z",
+    "image": "images/course/photos/data_analysis.jpg",
+    "cert_benefit": "Earning a certificate in Data Analysis can lead to careers such as Data Analyst, Business Analyst, or Data Scientist. You'll develop the ability to analyze complex datasets, derive actionable insights, visualize data trends, and inform strategic business decisions, making you valuable in any data-driven industry.",
+    "international_certification": false,
+    "period_in_weeks": 8,
+    "fee": "25000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 23,
+  "fields": {
+    "owner": 1,
+    "subject": 2,
+    "title": "security management",
+    "slug": "security-management",
+    "overview": "Gain expertise in safeguarding organizational assets and mitigating risks with our security management courses. From developing robust security strategies to implementing protective measures, learn to address cybersecurity threats and ensure the confidentiality, integrity, and availability of information.",
+    "created": "2024-06-18T09:38:41.670Z",
+    "image": "images/course/photos/Security_P9JXLZQ.png",
+    "cert_benefit": "A Security Management certificate prepares you for roles like Security Manager, Information Security Analyst, or Cybersecurity Consultant. You'll learn to assess security risks, implement security measures, and monitor and respond to security incidents, protecting organizations from potential threats.",
+    "international_certification": false,
+    "period_in_weeks": 8,
+    "fee": "35000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 24,
+  "fields": {
+    "owner": 1,
+    "subject": 8,
+    "title": "project planning and design",
+    "slug": "project-planning-and-design",
+    "overview": "Master the art of project planning and design with our specialized courses. Explore methodologies for defining project scope, creating timelines, allocating resources, and managing stakeholders. Whether you're overseeing construction projects or launching business initiatives, our courses equip you with the tools to execute projects efficiently and achieve success.",
+    "created": "2024-06-18T09:39:40.270Z",
+    "image": "images/course/photos/project_planning_B2PfwK2.jpg",
+    "cert_benefit": "With a certification in Project Planning and Design, you can work as a Project Manager, Construction Manager, or Urban Planner. This course equips you with the skills to plan and manage project timelines, budgets, and resources, and to coordinate project teams and stakeholders, ensuring successful project completion",
+    "international_certification": false,
+    "period_in_weeks": 8,
+    "fee": "40000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 25,
+  "fields": {
+    "owner": 1,
+    "subject": 8,
+    "title": "front office",
+    "slug": "front-office",
+    "overview": "Enhance your knowledge of front office operations with our tailored courses. From customer service excellence to administrative efficiency, learn to manage front desk responsibilities effectively. Gain insights into hospitality management, healthcare administration, and other industries where front office skills are crucial for providing exceptional service and support.",
+    "created": "2024-06-18T09:40:21.243Z",
+    "image": "images/course/photos/front_office.jpg",
+    "cert_benefit": "A certificate in Front Office management can lead to positions such as Front Desk Coordinator, Administrative Assistant, or Office Administrator. You'll learn to manage customer interactions, handle administrative tasks, and ensure smooth office operations, enhancing the overall efficiency and professionalism of your workplace.",
+    "international_certification": false,
+    "period_in_weeks": 8,
+    "fee": "40000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 26,
+  "fields": {
+    "owner": 1,
+    "subject": 1,
+    "title": "software-project planning and design",
+    "slug": "software-project-planning-and-design",
+    "overview": "Master the art of project planning and design with our specialized courses. Explore methodologies for defining project scope, creating timelines, allocating resources, and managing stakeholders. Whether you're overseeing construction projects or launching business initiatives, our courses equip you with the tools to execute projects efficiently and achieve success.",
+    "created": "2024-06-18T09:43:53.567Z",
+    "image": "images/course/photos/project_planning.jpg",
+    "cert_benefit": "This certification opens doors to careers as a Project Manager, Software Developer, or Systems Analyst. You'll gain the expertise to plan and execute software projects, manage project teams, and ensure project deliverables meet stakeholder requirements, driving successful project outcomes.",
+    "international_certification": false,
+    "period_in_weeks": 8,
+    "fee": "40000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 27,
+  "fields": {
+    "owner": 1,
+    "subject": 1,
+    "title": "mobile app development",
+    "slug": "mobile-app-development",
+    "overview": "Embark on a journey into mobile app development with our courses designed to equip you with essential skills and knowledge. From creating intuitive user interfaces to implementing robust backend systems, our courses cover the entire app development lifecycle. Whether you're interested in Android, iOS, or cross-platform development, learn to build dynamic and engaging mobile applications that meet modern user expectations.",
+    "created": "2024-06-18T09:44:41.963Z",
+    "image": "images/course/photos/mobile_app.jpg",
+    "cert_benefit": "A certificate in Mobile App Development prepares you for roles like Mobile App Developer, Software Engineer, or UX/UI Designer. You'll learn to develop iOS and Android applications, implement mobile app design principles, and integrate backend services, making you proficient in creating engaging and functional mobile experiences",
+    "international_certification": false,
+    "period_in_weeks": 8,
+    "fee": "40000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 28,
+  "fields": {
+    "owner": 1,
+    "subject": 1,
+    "title": "it essesntials(computer,laptop repair and maintainance)",
+    "slug": "it-essesntialscomputerlaptop-repair-and-maintainance",
+    "overview": "Gain practical skills in computer repair and maintenance with our IT Essentials courses. Explore hardware and software fundamentals, troubleshooting techniques, and best practices for maintaining computer systems. Whether you're starting a career in IT support or looking to enhance your technical expertise, our courses prepare you to handle a wide range of computer-related issues effectively.",
+    "created": "2024-06-18T09:46:10.345Z",
+    "image": "images/course/photos/hardware.jpg",
+    "cert_benefit": "With a certificate in IT Essentials, you can pursue careers as a Computer Support Specialist, Help Desk Technician, or IT Technician. This certification equips you with the ability to troubleshoot hardware and software issues, maintain computer systems, and provide technical support to users, ensuring efficient and smooth IT operations.",
+    "international_certification": false,
+    "period_in_weeks": 4,
+    "fee": "15000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 29,
+  "fields": {
+    "owner": 1,
+    "subject": 1,
+    "title": "data protection",
+    "slug": "data-protection",
+    "overview": "Ensure the safety and privacy of sensitive information with our Data Protection courses. In an age where data breaches and cyber threats are prevalent, understanding data protection principles is crucial. Our courses cover key topics such as data encryption, regulatory compliance (like GDPR), data governance, and best practices for securing personal and organizational data. By the end of the course, you'll be equipped with the knowledge and skills to protect data effectively and maintain the trust of users and clients.",
+    "created": "2024-06-18T11:10:17.947Z",
+    "image": "images/course/photos/Security.png",
+    "cert_benefit": "Earning a certificate in Data Protection can lead to roles such as Data Protection Officer, Compliance Analyst, or Privacy Consultant. With this certification, you'll gain the skills to ensure regulatory compliance, protect sensitive information, and conduct data audits and risk assessments, making you an essential asset to any organization handling personal data.",
+    "international_certification": false,
+    "period_in_weeks": 8,
+    "fee": "40000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 30,
+  "fields": {
+    "owner": 1,
+    "subject": 1,
+    "title": "web developement",
+    "slug": "web-developement",
+    "overview": "A web development course typically covers the essential skills needed to build and maintain websites and web applications. This includes learning programming languages such as HTML, CSS, JavaScript, and often backend languages like Python, Ruby, or PHP. The curriculum usually spans topics like responsive design, web frameworks, version control systems (e.g., Git), databases, and web security. Advanced courses might delve into modern front-end libraries and frameworks like React or Angular, as well as server-side technologies such as Node.js. Practical projects and assignments are a key component, allowing students to apply their knowledge to real-world scenarios.",
+    "created": "2024-06-23T08:48:45.095Z",
+    "image": "images/course/photos/icons8-html-48_U1HwMYK.png",
+    "cert_benefit": "Earning a certificate in web development offers several benefits. Firstly, it provides a structured learning path and verifies the holder's competence in key areas of web development, which can enhance a resume. This credential is often recognized by employers, making job candidates more competitive in the job market. Additionally, a certificate can open doors to a variety of career opportunities, including roles such as web developer, front-end developer, back-end developer, and full-stack developer. It also indicates a commitment to professional development, which is attractive to potential employers and can lead to higher earning potential and career advancement. Moreover, the skills acquired are highly transferable across industries, as nearly every business today requires a robust online presence.",
+    "international_certification": false,
+    "period_in_weeks": 8,
+    "fee": "40000.00"
+  }
+},
+{
+  "model": "courses.course",
+  "pk": 31,
+  "fields": {
+    "owner": 1,
+    "subject": 4,
+    "title": "computer packages",
+    "slug": "computer-packages",
+    "overview": "A computer packages course is designed to equip individuals with essential skills in using various software applications commonly required in both professional and personal settings. This course typically covers a range of software tools including word processors like Microsoft Word, spreadsheet applications such as Microsoft Excel, presentation software like Microsoft PowerPoint, and possibly database management systems such as Microsoft Access. Participants learn how to create, edit, and manage documents, perform data analysis, prepare professional presentations, and handle database operations efficiently. The course often includes hands-on projects and assignments to reinforce learning and ensure practical understanding of the software",
+    "created": "2024-06-23T09:03:28.467Z",
+    "image": "images/course/photos/icons8-microsoft-excel-2019-48_TaLRD6c.png",
+    "cert_benefit": "Earning a certificate in computer packages offers numerous benefits. It provides formal recognition of proficiency in essential software tools that are widely used in the workplace, thus enhancing one's resume and job prospects. Employers value these skills highly, as they are fundamental to a wide range of tasks in various roles and industries. A certificate demonstrates a candidate's capability to handle office tasks effectively, making them more competitive in the job market. Furthermore, it indicates a commitment to ongoing learning and professional development, which can lead to better job performance and opportunities for career advancement. The skills gained are also highly versatile, applicable in many different fields, thereby increasing the certificate holder's adaptability and value in the workforce.",
+    "international_certification": false,
+    "period_in_weeks": 6,
+    "fee": "6000.00"
+  }
+},
+{
+  "model": "courses.text",
+  "pk": 3,
+  "fields": {
+    "owner": 1,
+    "title": "delete text",
+    "created": "2024-07-06T07:12:17.532Z",
+    "updated": "2024-07-06T07:12:17.532Z",
+    "context": "Here's a summary of the changes:\r\n\r\nThe JavaScript code is moved to an external scripts.js file.\r\nThe <script> tag in your HTML references the scripts.js file.\r\nThe CSS remains inline to ensure it directly applies to your HTML structure.\r\nBy keeping the JavaScript in an external file, you maintain a clear separation of concerns, making your code easier to maintain and debug. Additionally, if you need to use the same JavaScript functionality on multiple pages, you can simply include the scripts.js file without duplicating the code."
+  }
+},
+{
+  "model": "courses.file",
+  "pk": 2,
+  "fields": {
+    "owner": 1,
+    "title": "good book",
+    "created": "2024-07-06T07:13:25.910Z",
+    "updated": "2024-07-06T07:13:25.910Z",
+    "file": "files/Javascript_Cheat_Sheet_-_libgen.li.pdf"
+  }
+},
+{
+  "model": "courses.image",
+  "pk": 1,
+  "fields": {
+    "owner": 1,
+    "title": "nice image",
+    "created": "2024-07-06T07:12:33.550Z",
+    "updated": "2024-07-06T07:12:33.550Z",
+    "file": "images/modern.jpeg"
+  }
+},
+{
+  "model": "courses.rct",
+  "pk": 1,
+  "fields": {
+    "name": "ciscom",
+    "motto": "Discover the Power of Technology with Our Comprehensive Learning Programs",
+    "intro": "At  CISCOM, we believe in the transformative power of technology education. Our comprehensive learning programs are designed to equip you with the skills and knowledge needed to excel in today's fast-paced digital world. Whether you're a beginner looking to start your journey or a professional aiming to enhance your expertise, our courses offer hands-on experience, expert insights, and the latest industry trends. Join us and unlock new opportunities, innovate your career, and stay ahead in the ever-evolving field of technology. Embrace the future with confidence and become a part of our vibrant learning community today!\r\n\r\n---",
+    "email": null,
+    "facebook": null,
+    "twitter": null,
+    "linked_in": null,
+    "terms": "**Terms and Conditions**\r\n\r\n**Introduction**\r\n\r\nWelcome to CISCOM! These terms and conditions outline the rules and regulations for the use of our web app and participation in our educational programs, both online and in-person at Jomo Kenyatta University of Agriculture and Technology.\r\n\r\nBy accessing this website and enrolling in our courses, you accept these terms and conditions. Do not continue to use CISCOM if you do not agree to all of the terms and conditions stated on this page.\r\n\r\n**1. Definitions**\r\n\r\n**1.1 \"Platform\":** Refers to the CISCOM web app and any associated services.\r\n**1.2 \"User\":** Refers to any individual who accesses the platform or enrolls in our courses.\r\n**1.3 \"We\", \"Us\", \"Our\":** Refers to CISCOM.\r\n\r\n**2. User Accounts**\r\n\r\n**2.1 Account Creation:** Users must create an account to access certain features of the platform. You must provide accurate and complete information during the registration process.\r\n\r\n**2.2 Account Responsibility:** You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account.\r\n\r\n**2.3 Account Termination:** We reserve the right to suspend or terminate your account if you violate these terms and conditions.\r\n\r\n**3. Course Enrollment and Access**\r\n\r\n**3.1 Enrollment:** Users can enroll in available courses through the platform. Enrollment is subject to course availability and may or may not require payment of fees.\r\n\r\n**3.2 Course Access:** Upon successful enrollment, you will have access to the course materials for the duration specified by the course. Access may be revoked for violation of these terms.\r\n\r\n**3.3 Physical Classes:** For courses with physical classes, attendance at Jomo Kenyatta University of Agriculture and Technology is required as per the schedule provided.\r\n\r\n**4. Payments and Refunds**\r\n\r\n**4.1 Payment:** Fees for courses must be paid in full before access to course materials is granted. Payment methods will be specified on the platform.\r\n\r\n**4.2 Refunds:** Refund policies will be outlined for each course. Generally, refunds are not provided once access to course materials has been granted, except in exceptional circumstances.\r\n\r\n**5. User Conduct**\r\n\r\n**5.1 Prohibited Activities:** Users must not engage in any activities that are illegal, harmful, or violate the rights of others. This includes, but is not limited to, sharing copyrighted materials without permission, harassment, and hacking.\r\n\r\n**5.2 Content Standards:** Any content you post or share on the platform must be respectful and appropriate. We reserve the right to remove content that violates these standards.\r\n\r\n**6. Intellectual Property**\r\n\r\n**6.1 Ownership:** All content, materials, and intellectual property on the platform are owned by CISCOM or its licensors. Users are granted a limited, non-exclusive license to access and use the materials for personal, educational purposes.\r\n\r\n**6.2 Restrictions:** Users must not copy, distribute, or create derivative works of the materials without express permission from CISCOM.\r\n\r\n**7. Privacy**\r\n\r\n**7.1 Data Collection:** We collect and use personal data as described in our Privacy Policy. By using the platform, you consent to such processing.\r\n\r\n**8. Limitation of Liability**\r\n\r\n**8.1 No Warranty:** The platform and its content are provided \"as is\" without warranties of any kind. We do not guarantee the accuracy, completeness, or reliability of any content.\r\n\r\n**8.2 Limitation:** To the fullest extent permitted by law, CISCOM shall not be liable for any indirect, incidental, special, or consequential damages arising out of or in connection with the use of the platform or services.\r\n\r\n**9. Changes to Terms**\r\n\r\n**9.1 Updates:** We may revise these terms and conditions from time to time. Any changes will be posted on this page, and the \"Last Updated\" date will be revised. Continued use of the platform after such changes constitutes acceptance of the new terms.\r\n\r\n**10. Governing Law**\r\n\r\n**10.1 Jurisdiction:** These terms and conditions are governed by the laws of Kenya. Any disputes arising from these terms shall be resolved in the courts of Kenya.\r\n\r\n**Contact Us**\r\n\r\nIf you have any questions about these terms and conditions, please contact us at:\r\n\r\nCISCOM\r\nJomo Kenyatta University of Agriculture and Technology  \r\nEmail: [contact email]  \r\nPhone: [contact phone number]  \r\n\r\n**Last Updated:** [7/4/2024]",
+    "privacy": "**Privacy Policy**\r\n\r\n**Introduction**\r\n\r\nWelcome to CISCOM! We are committed to safeguarding the privacy of our students, partners, and visitors. This privacy policy outlines how we collect, use, and protect your personal information when you use our web app, participate in our e-learning programs, or engage in physical teaching at Jomo Kenyatta University of Agriculture and Technology.\r\n\r\n**1. Information We Collect**\r\n\r\n**1.1 Personal Information:** \r\nWe may collect personal information such as your name, email address, phone number, postal address, and academic details when you register on our platform, enroll in courses, or attend our physical classes.\r\n\r\n**1.2 Usage Data:**\r\nWe collect information on how you access and use our web app, including your IP address, browser type, pages visited, and the time and date of your visit.\r\n\r\n**1.3 Cookies and Tracking Technologies:**\r\nWe use cookies and similar tracking technologies to enhance your experience on our platform. These technologies help us understand your preferences and improve our services.\r\n\r\n**2. How We Use Your Information**\r\n\r\n**2.1 To Provide Services:**\r\nWe use your personal information to deliver our online and physical teaching services, process your course enrollments, and communicate with you about your progress and relevant updates.\r\n\r\n**2.2 To Improve Our Platform:**\r\nWe analyze usage data to improve the functionality, user experience, and content of our web app.\r\n\r\n**2.3 To Send Promotional Materials:**\r\nWith your consent, we may send you newsletters, promotional offers, and updates about new courses and partnerships.\r\n\r\n**3. Sharing Your Information**\r\n\r\n**3.1 With Service Providers:**\r\nWe may share your information with third-party service providers who assist us in operating our platform, conducting our business, or serving you, as long as they agree to keep your information confidential.\r\n\r\n**3.2 With Partners:**\r\nWe may share information with our educational and corporate partners to enhance your learning experience and provide additional opportunities.\r\n\r\n**3.3 Legal Requirements:**\r\nWe may disclose your information if required by law or in response to valid requests by public authorities.\r\n\r\n**4. Security of Your Information**\r\n\r\nWe implement a variety of security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the Internet or method of electronic storage is 100% secure.\r\n\r\n**5. Your Rights**\r\n\r\nYou have the right to access, correct, or delete your personal information held by us. You can also object to the processing of your data or request data portability. To exercise these rights, please contact us at [contact email].\r\n\r\n**6. Changes to This Privacy Policy**\r\n\r\nWe may update our privacy policy from time to time. We will notify you of any changes by posting the new privacy policy on our website and updating the \"Last Updated\" date.\r\n\r\n**7. Contact Us**\r\n\r\nIf you have any questions about this privacy policy or our data practices, please contact us at:\r\n\r\nCISCOM \r\nJomo Kenyatta University of Agriculture and Technology  \r\nEmail: [contact email]  \r\nPhone: [contact phone number]  \r\n\r\n**Last Updated:** [7/4/2024]\r\n\r\n---",
+    "outro": "By choosing our comprehensive learning programs, you've taken the first step towards mastering the world of technology. Whether you've gained new skills, deepened your knowledge, or discovered a passion for innovation, we are honored to be a part of your journey. Continue to leverage the power of technology to transform your future and make a lasting impact. Stay connected with our community, and keep pushing the boundaries of what's possible. Your success is our mission. Until next time, keep learning and keep growing",
+    "adress": "",
+    "phone": null
+  }
+},
+{
+  "model": "courses.partners",
+  "pk": 1,
+  "fields": {
+    "name": "JOMO KENYATTA UNIVERSITY OF AGRICULTURE AND TECHNOLOGY",
+    "website": "https://www.jkuat.ac.ke/",
+    "logo": "images/partners/jkuat_logo.jpg",
+    "description": "we are proud to partner with Jomo Kenyatta University of Agriculture and Technology (JKUAT) to provide a diverse range of courses tailored to meet the evolving needs of students and professionals. This strategic partnership allows us to leverage JKUAT's expertise and resources to offer high-quality educational content in various fields, including computer packages, business-related courses, and more.\r\n\r\nJKUAT, renowned for its commitment to academic excellence and innovative research, brings a wealth of knowledge and experience to our platform. Together, we aim to deliver comprehensive, accessible, and affordable education to learners across the globe. Our collaboration with JKUAT ensures that our courses are aligned with industry standards and academic rigor, providing students with the skills and credentials they need to succeed in their careers",
+    "image": "images/partners/buildings/jkuat_building.jpg"
+  }
+},
+{
+  "model": "courses.partners",
+  "pk": 2,
+  "fields": {
+    "name": "CISCO",
+    "website": "https://www.cisco.com/",
+    "logo": "images/partners/Cisco.jpg",
+    "description": "We have established a valuable partnership with Cisco, a global leader in networking and IT. This partnership enables us to offer a range of Cisco-certified networking courses, including CCNA (Cisco Certified Network Associate), CCNP (Cisco Certified Network Professional), and DevNet. These courses are designed to equip students with the practical skills and theoretical knowledge necessary to excel in the rapidly evolving field of networking and IT infrastructure.\r\n\r\nCisco's certification programs are globally recognized and respected, making our courses highly desirable for individuals seeking to advance their careers in technology. Through this partnership, our students gain access to cutting-edge training materials, hands-on labs, and the opportunity to earn industry-recognized certifications that enhance their employability and career prospects.",
+    "image": "images/partners/buildings/cisco_building.jpeg"
+  }
+},
+{
+  "model": "courses.partners",
+  "pk": 3,
+  "fields": {
+    "name": "HUAWEI",
+    "website": "https://www.huawei.com/en/",
+    "logo": "images/partners/huawei_logo.jpg",
+    "description": "We are thrilled to partner with Huawei, a leading global provider of information and communications technology (ICT) solutions. Our collaboration with Huawei allows us to offer specialized courses in various emerging technologies, including artificial intelligence (AI), data analysis, cybersecurity, and more. Huawei's extensive expertise in these areas ensures that our courses are at the forefront of technological advancements and industry demands.\r\n\r\nHuawei's courses provide students with in-depth knowledge and practical skills in some of the most sought-after and rapidly growing fields in the tech industry. By integrating Huawei's curriculum and resources into our platform, we offer learners the opportunity to gain a competitive edge in the job market and stay ahead in their professional development.",
+    "image": "images/partners/buildings/huawei_building.jpeg"
+  }
+},
+{
+  "model": "courses.testimonials",
+  "pk": 1,
+  "fields": {
+    "name": "magret wanjiru",
+    "testimony": "\"Accessing courses on mobile devices has been a game-changer for me. CISCOM commitment to providing flexible learning solutions has allowed me to pursue my educational goals without disrupting my professional and personal commitments. The ease of navigation and quality of content delivered online have made my learning journey smooth and enjoyable. I am grateful for the opportunity to learn from industry experts while maintaining a balanced lifestyle.\"",
+    "date": "2024-06-19"
+  }
+},
+{
+  "model": "courses.testimonials",
+  "pk": 2,
+  "fields": {
+    "name": "nicholas david",
+    "testimony": "During my course at CISCOM, I encountered technical difficulties, but I was impressed by the swift response and support from the admin team. Their dedication to resolving issues promptly reflects their commitment to student success. The blend of online and physical course delivery options provided flexibility, allowing me to tailor my learning experience to fit my schedule. CISCOM has set a high standard in education and support services.",
+    "date": "2024-05-25"
+  }
+},
+{
+  "model": "courses.testimonials",
+  "pk": 3,
+  "fields": {
+    "name": "mercy cherotich",
+    "testimony": "\"Studying Cisco networking courses at CISCO has been instrumental in shaping my career. The hands-on training and international certification opportunities provided by CISCOM have not only enhanced my technical skills but have also boosted my confidence in the job market. The support from the faculty and administration has been exceptional, ensuring a seamless learning experience from start to finish.\"",
+    "date": "2024-06-09"
+  }
+},
+{
+  "model": "courses.testimonials",
+  "pk": 4,
+  "fields": {
+    "name": "laurine atieno",
+    "testimony": "Enrolling in courses at CISCOM has been a transformative experience for me. The modern facilities, combined with the supportive staff and comprehensive curriculum, have made learning both engaging and effective. Whether in-person or online, the resources available have exceeded my expectations. I highly recommend CISCOM to anyone looking to advance their career through quality education.",
+    "date": "2024-07-01"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 1,
+  "fields": {
+    "question": "How do I enroll in a course?"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 2,
+  "fields": {
+    "question": "Are there any prerequisites for enrolling in a course?"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 3,
+  "fields": {
+    "question": "Will I receive a certificate from JKUAT upon completion?"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 4,
+  "fields": {
+    "question": "How do I prepare for Cisco certification exams?"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 5,
+  "fields": {
+    "question": "Can I access the courses on mobile devices?"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 6,
+  "fields": {
+    "question": "What should I do if I experience technical difficulties during a course?"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 7,
+  "fields": {
+    "question": "How is the course content delivered?"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 8,
+  "fields": {
+    "question": "Where are you located?"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 9,
+  "fields": {
+    "question": "What payment methods are accepted?"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 10,
+  "fields": {
+    "question": "Where can I make payments?"
+  }
+},
+{
+  "model": "courses.question",
+  "pk": 11,
+  "fields": {
+    "question": "Can I transfer credits from these courses to a degree program at JKUAT?"
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 1,
+  "fields": {
+    "question": 1,
+    "answer": "Currently, we do not offer online enrollment. To enroll in a course, please visit our offices at JKUAT, where our staff will assist you through the process. Alternatively, you can contact our admin team for further guidance and support on enrollment procedures."
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 2,
+  "fields": {
+    "question": 2,
+    "answer": "Prerequisites depend on the specific course you are interested in. Some courses may require prior knowledge or qualifications, while others are open to all learners. For detailed information on the prerequisites of your desired course, please contact our admin team, who can provide you with the necessary details and requirements."
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 3,
+  "fields": {
+    "question": 3,
+    "answer": "Upon completion of our courses, you will receive a certificate from our organisation. JKUAT certificates are strictly reserved for those who study and undertake courses directly through JKUAT. However, for our Cisco and Huawei courses, we provide internationally recognized certifications, ensuring your credentials are valued globally"
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 4,
+  "fields": {
+    "question": 4,
+    "answer": "After completing your Cisco course, we will provide you with comprehensive guidance on how to prepare for your certification exams. This includes information on study materials, exam schedules, and tips to help you succeed. Our support continues beyond the course to ensure you are fully prepared for the certification process."
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 5,
+  "fields": {
+    "question": 5,
+    "answer": "Yes, our courses are designed to be fully accessible on mobile devices. This flexibility allows you to continue your studies anytime and anywhere, ensuring you can fit learning into your busy schedule without any hassle."
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 6,
+  "fields": {
+    "question": 6,
+    "answer": "If you encounter any technical difficulties while taking a course, please reach out to our admin team immediately. They are available to assist you and will work diligently to resolve any issues you may face, ensuring your learning experience remains smooth and uninterrupted."
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 7,
+  "fields": {
+    "question": 7,
+    "answer": "Our courses are delivered through a blend of online platforms and in-person sessions. This hybrid approach provides the flexibility to learn remotely while also offering the opportunity for face-to-face interaction and hands-on experience, depending on the course requirements"
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 8,
+  "fields": {
+    "question": 8,
+    "answer": "Our offices are located at Jomo Kenyatta University of Agriculture and Technology (JKUAT). You are welcome to visit us for any inquiries or assistance regarding our courses and services."
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 9,
+  "fields": {
+    "question": 9,
+    "answer": "We accept payments through Mpesa and Airtel Money, offering convenient and secure options for you to pay for your courses. however, it is advisable to make contact before making payment for security reason and issues that may arise in future."
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 10,
+  "fields": {
+    "question": 10,
+    "answer": "For security reasons, we do not display our paybill number on the website. To make a payment, please contact our admin team, who will provide you with detailed instructions and guidance on how to complete your payment securely."
+  }
+},
+{
+  "model": "courses.answer",
+  "pk": 11,
+  "fields": {
+    "question": 11,
+    "answer": "Unfortunately, credits from our courses cannot be transferred to a degree program at JKUAT. JKUAT has specific prerequisites that must be met for admission into their degree programs. For more information, please visit the JKUAT website or contact our admin team, who can provide further details and assistance."
+  }
+}
+]

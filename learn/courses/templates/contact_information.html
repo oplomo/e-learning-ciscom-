@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}
+    </title>
+    <script src="https://kit.fontawesome.com/1ca4691ddb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" /> 
+    <link href="{% static 'courses/css/styles.css' %}" rel="stylesheet">
+
+</head>
+<body>
+    <div class="co_parent">
+
+    <div class="contact">
+
+        <div class="ci adress"><span>adress;</span> <span>{{ adress }}1</span></div>
+        <div class="ci email"><span>email:</span><span>{{ email }}2</span></div>
+        <div class="ci tel"><span>phone number:</span> <span>{{ phone }}3</span></div>
+        <div class="co_social">social media</div>
+         <div class="co_ic">
+            <div class="ic"><a href=""><i class="fa-brands fa-facebook"></i></a></div>
+            <div class="ic"><a href=""><i class="fa-brands fa-twitter"></i></a></div>
+            <div class="ic"><a href=""><i class="fa-brands fa-linkedin"></i></a></div>
+
+         </div>
+         <div class="co_social"><span>our location</span> <span><i class="fa-solid fa-location-dot"></i></span></div>
+         <div class="loc">
+            <iframe
+             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d127650.88523453775!2d37.01707538147051!3d-1.0946621944099117!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f46218f3e0cb5%3A0x75b4daef0f72b1c9!2sDepartment%20of%20Information%20Technology!5e0!3m2!1sen!2ske!4v1719989135553!5m2!1sen!2ske"
+             width="400"
+             height="300"
+             style="border:0;"
+             allowfullscreen=""
+             loading="lazy"
+             referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+         </div>
+    </div>
+
+    <div class="send">
+        <div class="co_social">send us a message</div>
+            <form action="" method="POST">
+                {{ form.as_p }}
+                <input type="submit" value="send message">
+                {% csrf_token %}
+            </form>
+    </div>
+</div>
+</body>
+</html>

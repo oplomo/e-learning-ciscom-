@@ -1,0 +1,42 @@
+{% extends "admin.html" %}
+{% load static %}
+{% block title %}
+  admitting new students
+{% endblock title %}
+
+
+{% block content %}
+
+<form method="post">
+    {% csrf_token %}
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br>
+
+    <label for="first_name">First Name:</label>
+    <input type="text" id="first_name" name="first_name" required><br>
+
+    <label for="last_name">Last Name:</label>
+    <input type="text" id="last_name" name="last_name" required><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+
+    <label for="course">Courses:</label><br>
+    <select multiple id="course" name="course">
+        <!-- Options for courses here -->
+        {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.title }}</option>
+        {% endfor %}
+    </select><br>
+
+ 
+
+    <label for="certificate_issued">Certificate Issued:</label>
+    <input type="checkbox" id="certificate_issued" name="certificate_issued"><br>
+
+    <button type="submit">Submit</button>
+</form>
+
+{% endblock content %}
+
+

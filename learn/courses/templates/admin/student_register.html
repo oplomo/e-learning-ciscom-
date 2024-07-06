@@ -1,0 +1,95 @@
+{% extends "admin.html" %}
+{% load static %}
+
+{% block title %}
+  Admin Dashboard
+{% endblock title %}
+
+{% block content %}
+<h1>Welcome to the Admin Site</h1>
+<div class="filter-form">
+    <form method="post" action="{% url 'admin_dashboard' %}">
+        {% csrf_token %}
+        <label for="num_courses_filter">Number of Courses Greater Than:</label>
+        <input type="number" id="num_courses_filter" name="num_courses_filter" value="{{ request.POST.num_courses_filter }}">
+
+        <label for="exact_num_courses_filter">Exact Number of Courses:</label>
+        <input type="number" id="exact_num_courses_filter" name="exact_num_courses_filter" value="{{ request.POST.exact_num_courses_filter }}">
+
+        <label for="certificate_issued_filter">Certificate Issued:</label>
+        <input type="checkbox" id="certificate_issued_filter" name="certificate_issued_filter" value="true" {% if request.POST.certificate_issued_filter %}checked{% endif %}>
+
+        <label for="fee_balance_filter">Fee Balance Greater Than:</label>
+        <input type="number" id="fee_balance_filter" name="fee_balance_filter" value="{{ request.POST.fee_balance_filter }}">
+
+        <label for="course_filter">Filter by Course:</label>
+        <select id="course_filter" name="course_filter">
+            <option value="">Select Course</option>
+            {% for course in courses %}
+                <option value="{{ course }}" {% if request.POST.course_filter == course %}selected{% endif %}>{{ course }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="start_date_filter">Admission From:</label>
+        <input type="date" id="start_date_filter" name="start_date_filter" value="{{ request.POST.start_date_filter }}">
+
+        <label for="end_date_filter">TO:</label>
+        <input type="date" id="end_date_filter" name="end_date_filter" value="{{ request.POST.end_date_filter }}">
+        
+        <button type="submit">Apply Filters</button>
+    </form>
+</div>
+
+<div class="register_table">
+    <table>
+        <thead>
+            <tr>
+                <th>Username/ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Enrollment Date</th>
+                <th>Courses</th>
+                <th>Amount</th>
+                <th>Amount Paid</th>
+                <th>Balance</th>
+                <th>Certificate Issued</th>
+            </tr>
+        </thead>
+        <tbody>
+          {% for data in student_data %}
+          <tr>
+              <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.username }}</a></td>
+              <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.first_name }}</a></td>
+              <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.last_name }}</a></td>
+              <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.enrollments.enrollment_date }}</a></td>
+              <td>
+                  <ul>
+                      {% for course in data.student.enrollments.course.all %}
+                          <li>{{ course.title }}</li>
+                      {% endfor %}
+                  </ul>
+              </td>
+              <td><a href="{% url 'student_info' data.student.id %}">{{ data.total_amount }}</a></td>
+              <td><a href="{% url 'student_info' data.student.id %}">{{ data.total_paid }}</a></td>
+              <td><a href="{% url 'student_info' data.student.id %}">{{ data.fee_balance }}</a></td>
+              <td>
+                {% if data.student.enrollments.certificate_issued %}yes{% else %}no{% endif %}
+              </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+</div>
+
+<form method="get" action="{% url 'student_register_pdf' %}">
+    <input type="hidden" name="num_courses_filter" value="{{ request.POST.num_courses_filter }}">
+    <input type="hidden" name="exact_num_courses_filter" value="{{ request.POST.exact_num_courses_filter }}">
+    <input type="hidden" name="certificate_issued_filter" value="{{ request.POST.certificate_issued_filter }}">
+    <input type="hidden" name="fee_balance_filter" value="{{ request.POST.fee_balance_filter }}">
+    <input type="hidden" name="course_filter" value="{{ request.POST.course_filter }}">
+    <input type="hidden" name="start_date_filter" value="{{ request.POST.start_date_filter }}">
+    <input type="hidden" name="end_date_filter" value="{{ request.POST.end_date_filter }}">
+    <button type="submit">Download PDF</button>
+</form>
+
+{% endblock content %}
