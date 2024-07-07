@@ -69,7 +69,7 @@ def handle_message(request=None, **kwargs):
             name = inquiry.cleaned_data["name"]
             from_email = inquiry.cleaned_data["email"]
             subject = inquiry.cleaned_data["subject"]
-            message = f"{inquiry.cleaned_data["message"]}\n [this messages has been sent  by {name}- {from_email}]"
+            message = f"{inquiry.cleaned_data['message']}\n [this messages has been sent  by {name}- {from_email}]"
             send_mail(
                 subject,
                 message,
