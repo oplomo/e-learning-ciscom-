@@ -26,7 +26,11 @@ SECRET_KEY = "django-insecure-)vbavmega5n7^%@74&*3)h)4cpo2jwq^*m2-1$i#c8&vr71$o$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "e-learning-ciscom-1.onrender.com",
+    "127.0.0.1",
+    "localhost",
+]
 
 
 # Application definition
@@ -113,20 +117,19 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = "static/"
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
-
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 
-MEDIA_URL = "media/"
+# Media files (User uploads)
+# https://docs.djangoproject.com/en/5.0/topics/files/
+
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
 
-STATIC_URL = "static/"
-
+# Email settings
+# Ensure to keep sensitive information secure, consider using environment variables
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "adamsquare64@gmail.com"
@@ -137,11 +140,3 @@ EMAIL_DEBUG = True
 
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
-
-# from django.urls import reverse_lazy
-
-# LOGIN_REDIRECT_URL = reverse_lazy("student_course_list")
-# settings.py
-
-# settings.py
-

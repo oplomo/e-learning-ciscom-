@@ -17,7 +17,6 @@ from django.contrib.auth.decorators import login_required
 from .models import (
     Module,
     Content,
-
     Testimonials,
     Course,
     Rct,
@@ -44,21 +43,25 @@ from django.core.exceptions import PermissionDenied
 from django.contrib.auth.decorators import user_passes_test
 
 
-
 def group_required(group_name):
     def decorator(view_func):
         @login_required
         def _wrapped_view(request, *args, **kwargs):
-            if request.user.is_superuser or request.user.groups.filter(name=group_name).exists():
+            if (
+                request.user.is_superuser
+                or request.user.groups.filter(name=group_name).exists()
+            ):
                 return view_func(request, *args, **kwargs)
             else:
                 raise PermissionDenied
+
         return _wrapped_view
+
     return decorator
 
 
 def permission_denied_view(request, exception=None):
-    return render(request, '403.html', status=403)
+    return render(request, "403.html", status=403)
 
 
 def handle_message(request=None, **kwargs):
@@ -69,12 +72,12 @@ def handle_message(request=None, **kwargs):
             name = inquiry.cleaned_data["name"]
             from_email = inquiry.cleaned_data["email"]
             subject = inquiry.cleaned_data["subject"]
-            message = f"{inquiry.cleaned_data["message"]}\n [this messages has been sent  by {name}- {from_email}]"
+            message = f"{inquiry.cleaned_data['message']}\n [this messages has been sent  by {name}- {from_email}]"
             send_mail(
                 subject,
                 message,
                 from_email,
-                [settings.EMAIL_HOST_USER],                
+                [settings.EMAIL_HOST_USER],
                 fail_silently=False,
             )
 
@@ -82,9 +85,10 @@ def handle_message(request=None, **kwargs):
             inquiry = ContactForm()
         else:
             messages.error(request, "There was an error with your submission.")
-            inquiry  = ContactForm()
+            inquiry = ContactForm()
     else:
         inquiry = ContactForm()
+
 
 def home_page(request):
     rct = get_object_or_404(Rct, pk=1)
@@ -131,7 +135,7 @@ def course_about(request, id, name):
     rct = get_object_or_404(Rct, pk=1)
     handle_message(request)
     context = {
-        "form":inquiry,
+        "form": inquiry,
         "course": course,
         "rct": rct,
     }
@@ -176,26 +180,28 @@ def contacts(request):
     }
     return render(request, "public/contacts.html", context)
 
+
 def terms(request):
     rct = get_object_or_404(Rct, pk=1)
     context = {
         "rct": rct,
     }
-    return render(request,"public/terms.html",context)
- 
+    return render(request, "public/terms.html", context)
+
+
 def privacy(request):
     rct = get_object_or_404(Rct, pk=1)
     context = {
-
         "rct": rct,
     }
-    return render(request,"public/privacy.html",context)
+    return render(request, "public/privacy.html", context)
+
 
 def Instractor_portal(request):
     return render(request, "instractor/instractor_dashboard.html")
 
 
-@group_required('students')
+@group_required("students")
 def Student_dashboard(request):
     return render(request, "student/student_dashboard.html")
 
@@ -244,12 +250,12 @@ class OwnerCourseEditmixin(OwnerCoursemixin, OwnerEditMixin):
 class ManageCourseListView(OwnerCoursemixin, ListView):
     template_name = "courses/manage/course/list.html"
     permission_required = "courses.view_course"
-    raise_exception = True  
+    raise_exception = True
 
 
 class CourseCreateView(OwnerCourseEditmixin, CreateView):
     permission_required = "courses.add_course"
-    raise_exception = True  
+    raise_exception = True
 
 
 class CourseUpdateView(OwnerCourseEditmixin, UpdateView):
@@ -408,6 +414,7 @@ class StudentCourseListView(LoginRequiredMixin, ListView):
         qs = super().get_queryset()
         return qs.filter(enrollments__student=self.request.user)
 
+
 class StudentCourseDetailView(DetailView):
     model = Course
     template_name = "student/course/detail.html"
@@ -431,6 +438,7 @@ class StudentCourseDetailView(DetailView):
             else:
                 context["module"] = None
         return context
+
 
 @user_passes_test(lambda u: u.is_superuser)
 def admin_dashboard(request):
@@ -648,11 +656,8 @@ def student_admision(request):
 
             certificate_issued = form.cleaned_data["certificate_issued"]
 
-            course_ids = request.POST.getlist(
-                "course"
-            )  
+            course_ids = request.POST.getlist("course")
 
-        
             password = username
             user, created = User.objects.get_or_create(
                 username=username,
@@ -683,12 +688,18 @@ def student_admision(request):
             message = f"Dear {first_name},\n\nWe are thrilled to inform you that you have successfully registered at {school.name} and enrolled in the following courses:\n\n{enrolled_courses}.\n\nYour username is {username} and your password is {password}.\n\nPlease use this information to log in to your account and access your learning materials.\n\nWishing you the best of luck as you embark on your educational journey with us!"
             From = settings.EMAIL_HOST_USER
             TO = [email]
-            
-            if any(course.title.lower() == 'cisco certified network professional (ccnp)' for course in selected_courses) or any(course.title.lower() == 'cisco certified network associate (ccna)' for course in selected_courses):
+
+            if any(
+                course.title.lower() == "cisco certified network professional (ccnp)"
+                for course in selected_courses
+            ) or any(
+                course.title.lower() == "cisco certified network associate (ccna)"
+                for course in selected_courses
+            ):
                 message += f"\nFor Cisco courses, international certification is offered as well as granted permision to learn on cisco website. For more information or inquiries, please contact the admin\n\n"
-            
-            message += "\n\nWarm regards,\nThe {school.name} Team"          
-            
+
+            message += "\n\nWarm regards,\nThe {school.name} Team"
+
             send_mail(
                 subject,
                 message,

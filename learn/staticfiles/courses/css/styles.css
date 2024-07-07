@@ -1,0 +1,1759 @@
+/* everything css........................ */
+
+*{
+    box-sizing: border-box;
+}
+
+img{
+    width: 100%;
+    height: 100%;
+}
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(241, 200, 200, 0.295);
+}
+
+/* div{
+    border: 2px solid black;
+    } */
+
+
+/* base .................................................... */
+.menu{
+    display: flex;
+    justify-content: space-between;
+    background-color: #08bd32;
+ 
+}
+
+.menu_list{
+    display: flex;
+}
+
+.m_toggle-button {
+    display: none;
+    font-size: 1.5rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.log_form{
+   margin: 0px; 
+   padding: 0px;
+}
+
+.item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin: 10px;
+}
+.item a, .more-links p a{
+   color: white;
+    text-decoration: none;
+}
+.item a:hover, .more-links p a:hover, .top_menu a:hover{
+    color:  black;
+    letter-spacing: 1px;
+}
+.right_menu{
+    margin: 0px 20px;
+ 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top_menu{
+    background-color: red;
+    padding: 5px;
+}
+.top_menu a{
+    color: white;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+.messages {
+    list-style-type: none;
+    padding: 10px;
+    margin: 0;
+    width: 80%;
+    height: 10vh;
+}
+
+.messages li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.messages li.success {
+    background-color: #1acf45;
+    color: #155724;
+    border: 1px solid #2f4434;
+}
+
+.messages li.error {
+    background-color: #f80d21;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.closebtn {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    color: #aaa;
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.closebtn:hover {
+    color: black;
+}
+
+/* course/manage/course/list......................................................... */
+.mine_title{
+    font-size: 3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 900;
+    padding: 5px;
+    background-color: beige;
+}
+
+
+.course-info a{
+
+    text-decoration: none;
+    cursor: pointer;
+    margin: 20px;
+    color: blue;
+    font-size: 1.3em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 300;
+}
+
+.mine_c_title{
+    padding: 5px;
+    font-weight: 500;
+    font-size: 2em;
+
+}
+
+.course-info{
+    padding: 10px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1); 
+    /* widtuh: 80%; */
+    margin: 2%;
+    background-color: rgba(163, 161, 161, 0.603);
+    
+    
+}
+
+.mine_name{
+    font-size: .5em;
+    text-decoration: underline;
+}
+
+.module{
+margin-bottom: 20px;
+}
+
+.mine_butt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50vw;
+}
+
+.mine_butt .button, .button{
+  
+    border: 1px solid black;    
+    text-align: center;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 1.2em;
+    background-color: blue;
+    color: white;
+}
+
+.mine_empty{
+    margin: 20px;
+    width: 50vw;
+    text-align: center;
+    padding: 10px;
+    font-size: 2em;
+    font-weight: 500;
+    background-color: rgba(163, 161, 161, 0.603);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+
+}
+
+/* course/manage/course/form......................................................... */
+
+
+.module_form{
+  padding:10px 20px;
+  width:100%;
+}
+
+
+.module_form label{
+    display: block;
+}
+
+.mine_hold_form{
+    padding: 20px;
+    background-color: rgba(163, 161, 161, 0.274);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    
+}
+
+.module_form input, .module_form select{
+
+padding: 10px;
+border-bottom: 1px double black;
+}
+
+.module_form select> option{
+
+    font-size: 1.2em;
+    margin: 5px;
+    font-weight: 200;
+    padding: 5px;
+}
+
+/* course/manage/course/form......................................................... */
+
+.mine_delete{
+    text-align: center;
+    
+}
+.del_ob{
+    text-decoration: underline;
+    font-weight: bold;
+}
+.module_delete{
+    padding: 10px;
+    margin-top: 20px;
+    background-color: rgba(163, 161, 161, 0.274);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+
+}
+.del_button{
+    margin: 20px auto;
+    
+}
+
+/* course/manage/module/content list......................................................... */
+
+
+.contents{
+    background: rgb(1, 37, 51);
+    color: white;
+    height: fit-content;
+    padding: 20px;
+}
+
+.manage_module{
+    background-color: rgb(250, 237, 237);
+    padding: 20px;
+    min-width: 60%;
+    max-width: 70%;
+
+}
+
+.module_manager{
+    display: flex;
+    margin: 0px 20px;
+    padding: 10px;   
+    
+}
+
+.mod_title{
+
+    font-size: 2em;
+    text-align: center;
+}
+
+#module-contents{
+    padding: 10px;
+}
+
+.each_content{
+    background-color: rgba(110, 109, 109, 0.87);
+    
+}
+.each_content a{
+    color: black;
+    text-decoration: none;
+}
+.each_content a:hover{
+    color: #721c24;
+    text-transform: uppercase;
+}
+.right_header{
+    text-align: center;
+    font-size: 2em;
+    font-weight: 400;
+    text-decoration: underline;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 30px;
+    padding: 5px;
+}
+.left_header{
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 400;
+    text-decoration: underline;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.cont_title{
+    text-align: center;
+    font-size: 2em;
+    padding: 10px;
+}
+
+.manage_menu> *{
+    display: block;
+}
+
+.manage_menu{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.contents ul li{
+    margin: 20px;
+}
+
+.contents ul li.selected {
+    background:#3f3f3f;
+}
+
+.contents ul li:hover {
+    background:#3f3f3f;
+}
+
+.contents ul li.placeholder {
+  background: #333;
+  border:1px dashed #ccc;
+  padding:0;
+  margin:10px 0;
+}
+
+.contents ul span {
+    text-transform:uppercase;
+    color:#bbb;
+    font-size:14px;
+    padding: 5px;
+}
+
+.contents ul a {
+    display:block;
+    color:#fff;
+    text-decoration:none;
+    font-size: 1.4em;
+    padding: 5px;
+
+}
+
+.contents ul a:hover {
+    color:#4dcc43;
+    cursor:move;
+}
+
+.manage_butt{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.content-types{
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+.content-types li{
+    padding: 10px;
+    background-color: rgba(37, 37, 248, 0.897);
+}
+
+.content-types li a{
+    color: white;
+    text-decoration: none;
+
+}
+
+/* stdent/student dashboard/ course/couse/list ......................................................... */
+
+iframe{
+   
+    width:100%;
+    height: 100vh;
+    /* border: 2px solid red; */
+}
+.each_content_st{
+
+    margin: 20px 0px;
+    padding: 10px;
+}
+
+.module_c_detail{
+
+    padding: 20px;
+}
+
+.each_content_std_mod{
+
+    border: 1px dashed black;
+    margin: 20px 0px;
+    padding: 10px;
+    
+}
+
+.std_mod{
+    margin: 5px;
+    text-align: center;
+    text-decoration: underline;
+    font-weight: 900;
+    font-size: 2em;
+}
+
+/* home......................................................... */
+.home_intro{
+    margin: 40px 0px;
+    display: flex;
+    padding: 5px;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.intro{
+    max-width: 50%;
+    padding: 5px;
+}
+
+.swiper {
+    max-width: 45%;
+    height: 65vh;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+    padding: 10px 0px;
+
+}
+
+
+.ima img{
+
+    z-index: -1;
+
+ 
+}
+
+.h_link{
+    text-decoration: none;
+    color: #333;
+}
+
+
+
+.intro_links{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+
+
+.intro_motto{
+    margin: 20px 0px;
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.h_button{
+    margin: 10px;
+    width: 100%;
+    
+}
+
+.hc_icons{
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto) ;
+    place-items: center;
+    
+}
+
+.c_hold{
+    min-width: 100px;
+    margin: 20px;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.c_icon{
+
+    margin: 5px 0px;
+    width: 100px;
+    height: 100px;
+
+}
+
+
+
+.hm_more{
+    text-align: right;
+    padding: 5px;
+}
+
+.home_courses{
+
+    margin: 40px 0px;
+    padding: 5px;
+}
+
+.subject_holder{
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
+}
+
+.subject_box{
+  margin: 20px;
+}
+
+.subject_images{
+    display: flex;
+    padding: 5px;
+    flex-wrap: wrap;
+ 
+    
+}
+
+.subimage{
+    width: 50px;
+    height: 50px;
+    margin: 5px;
+}
+
+.subject_image{
+    background: linear-gradient(to right, rgb(60, 60, 95), rgb(26, 26, 63),rgba(7, 7, 29, 0.678), rgba(1, 1, 34, 0.432));
+    min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: white;
+
+  
+}
+
+.s_name{
+    text-align: center;
+    padding: 5px;
+    margin: 5px;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.sub_info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+
+
+.sub_det{
+    padding: 5px;
+    font-size: 1.1em;
+    text-decoration: underline;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.appear{
+    margin: 10px 0px;
+}
+
+
+
+.steps_hld{
+    display: flex;
+    justify-content:space-evenly;
+    margin: 30px 0px;
+}
+
+.step{
+    max-width: 30%;
+    padding: 10px;
+    box-shadow: 10px 10px 10px 5px #bbb;
+
+}
+
+.st_no{
+    width: 50px;
+    font-size: 20px;
+    height: 50px;
+    margin: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    border: 2px dotted#007bff;
+}
+
+.instruction{
+    padding: 5px;
+}
+
+
+.home_testimonials{
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 30px;
+  
+   
+    
+}
+
+.testimony{
+    width: 45%;
+    margin: 20px;
+    background-color: rgb(250, 186, 250);
+    border-radius: 10px;
+
+}
+
+.test_image{
+    display: flex;
+    padding: 10px;
+    justify-content: center;
+    align-self: center;
+}
+
+
+.tes_name{
+    margin: 10px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 24px;
+    text-transform: uppercase;
+    background-color: rgba(248, 170, 248, 0.479);
+    box-shadow: 10px 10px 5px 2px  rgb(139, 91, 139);
+    font-weight: bolder;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}
+.test_at{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.test_det{
+    margin: 5px 0px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 20px;
+}
+.test_p{
+    padding: 5px;
+}
+.a_info{
+  font-style: italic;
+  margin: 5%;
+}
+
+
+
+.footer{
+        background-color: rgb(94, 91, 91);
+        color: white;
+        padding: 10px;
+    
+    }
+
+.top_foot{
+    display: flex;
+    justify-content: space-around;
+}
+.fot_menu{
+    display: flex;
+    justify-content: space-around;
+    width: 70%;
+    padding: 10px;
+}
+
+.fmn a{
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+}
+.footer_icons .ic a{
+   color: white;
+   padding: 5px;
+   
+}
+.footer_icons .ic a:hover, .fmn a:hover{
+    color: greenyellow;
+}
+.footer_icons{
+    display: flex;
+    justify-content: space-around;
+    width: 20%;
+    padding: 10px;
+
+}
+
+.btm_foot{
+    text-align: center;
+    padding: 5px;
+    font-size: 12px;
+}
+.btm_foot:hover{
+    font-size: 16px;
+}
+/* home/courses......................................................... */
+
+.oc_title{
+
+    font-size: 2.5em;
+    padding: 10px;
+    text-align: center;
+    font-weight: bolder;
+}
+.oc_clist{
+    display: flex;
+    flex-wrap: wrap;   
+    background-color: #74cf892f; 
+
+}
+.oc_button{
+    display: block;
+    padding: 10px;
+    background-color: violet;
+    text-align: center;
+    text-decoration: none;
+    color: blue;
+}
+.oc_button:hover{
+    background-color: #4dcc43;
+}
+.oc_tlinks{
+    display: flex;
+    flex: wrap;
+    padding: 5px;
+    justify-content: space-around;
+}
+
+.oc_show{
+    padding: 5px;
+    text-align: center;
+    font-size: 1.3em;
+    font-weight: bold;
+}
+.oc_li{
+    margin: 5px;
+}
+.oc_li a{
+    text-decoration: none;
+    color: #333;
+}
+.oc_li a:hover{
+    text-decoration: underline;
+    color: #007bff;
+}
+.oc_courses{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    place-items: center;
+    gap: 40px;
+    padding:10px 5px;
+    
+}
+.oc_link{
+    color: black;
+    text-decoration: none;
+}
+.oc_hold{
+    display: flex;
+    flex-direction: column;
+   
+}
+.oc_top{
+    display: flex;
+}
+.hold_mid{
+    display: flex;
+    flex-direction: column;
+}
+
+.hold_left{
+   flex-basis: 20%;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   padding: 5px;
+}
+
+.hold_mid{
+    flex-basis: 80%;
+
+}
+
+
+.left_img{
+    width: 150px;
+    height: 150px;
+}
+
+
+.mid_title{
+    font-size: 1.3em;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.oc_bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+}
+.mid_weeks{
+    margin: 5px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.hold_right{
+   
+    font-size: 1.5em;
+    font-weight: bolder;
+    text-align:center;
+    padding: 5px;
+    text-decoration: underline;
+}
+
+.oc_hold{
+    border: 1px solid #007bff;
+}
+.oc_hold:hover{
+    border: 3px outset #4dcc43;
+}
+.oc_down{
+    display: flex;
+    justify-content: space-around;
+}
+/* home/courses/course_about......................................................... */
+
+.cou_parent{
+    display: flex;
+    min-height: 90vh;
+    margin: 30px 5px;
+    padding: 5px; 
+    align-items: center;
+    justify-content: center;
+    
+}
+.cou_img{
+    flex-basis: 50%;
+    height: 90vh;
+    margin: 10px;
+ 
+}
+.cou_more{
+    flex-basis: 45%;
+    padding: 10px;
+    box-shadow: -10px 10px 5px 10px rgba(158, 138, 138, 0.781);
+    margin: 10px;
+
+}
+.cou_more div{
+    margin: 10px 0px;
+
+}
+.cou_title{
+    font-size: 2em;
+    font-weight: bolder;    
+}
+.cou_ksh{
+font-size: 1.8em;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+font-weight: bold;
+padding: 5px;
+letter-spacing: 1px;
+}
+.cou_exp{
+    font-size: 1.4em;
+    font-size: bold;
+    padding: 10px;
+    text-align: center;
+    text-decoration: underline;
+}
+
+
+/* home/subscription......................................................... */
+
+
+.sub_table{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin: 30px;
+    padding: 10px;
+}
+.sub_table table th, .sub_table table td{
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.sub_table table{
+    border-collapse: collapse;
+
+}
+/* home/partners......................................................... */
+
+
+.p_title{
+    margin: 30px 0px;
+    text-align: center;
+    padding: 10px;
+    font-size: 2.5em;
+    font-weight: bolder;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.pat_div{
+    display: flex;
+    flex-direction: column;
+    margin: 40px 20px;
+    box-shadow: 10px 10px 5px rgb(1, 58, 58);
+    border-top: 1px outset #007bff;
+    border-left:1px outset #007bff ;
+    border-radius: 10px;
+}
+
+.pat_inf{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.pat_name{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.p_name{
+    font-size: 1.8em;
+    font-style: italic;
+    color: black;
+    text-decoration: none;
+    margin: 20px;
+    padding: 5px;
+}
+.p_logo{
+    max-width: 10%;
+    margin: 20px;
+    height: 20%;
+}
+.pat_rel{
+    max-width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.pat_pic{
+    max-width: 40%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.pat_site{
+    text-align: center;
+}
+
+/* home/faq......................................................... */
+
+
+.fq_parent{
+    padding: 20px;
+}
+.q_hold{
+    margin: 30px 0px;
+    padding-bottom: 2px;
+    box-shadow: 10px 5px 0px rgb(1, 58, 58);
+    border-top: 1px outset #007bff;
+    border-left:1px outset #007bff ;
+    border-radius: 10px;
+}
+.question{
+
+    padding: 10px;
+    padding-left: 20px;
+    font-size: 1.5em;
+    font-weight: 600;
+    cursor: pointer;
+
+    
+}
+.answer{
+    padding: 5px;
+    background-color: #bbb;
+    margin: 0px 15px;
+    display: none;
+}
+
+.ask{
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.askk{
+    color: white;
+    text-decoration: none;
+}
+/* home/about......................................................... */
+
+.ab_intro{
+ height: 90vh;
+ margin-bottom: 30px;
+ padding: 20vh 10px 10px 60%;
+ background-image: url("../images/book.jpeg");
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: bottom;
+
+}
+.a_intro{
+    color: white;
+    font-size: 24px;
+}
+.ab_mission{
+    display: flex;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.globe{
+    height: 65vh;
+    width: 50%;
+    order: 1;
+}
+.mission{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: cursive;
+    order: 2;
+    width: 40%;
+    color: blue;
+    font-size: 24px;
+}
+
+.ab_info{
+    margin-bottom: 30px;
+    display: flex;
+    height: 30vh;
+    font-size: 24px;
+    font-style: italic;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+}
+
+.ab_adv{
+    display: flex;
+    flex-direction: column; 
+    margin-bottom: 30px;
+}
+
+.adv_hld{
+ margin: 30px;
+ display: flex;
+ justify-content: space-between;
+ background-color: thistle;
+ padding: 10px;
+}
+.alt{
+    order: 2;
+}
+.alter{
+    order: 1;
+}
+.adv{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+}
+.adv_img{
+
+    height: 60vh;
+    width: 50%;
+}
+.adv_title{
+    font-size: 1.8em;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color: black;
+    background-color: aquamarine;
+    padding: 5px;
+}
+
+.advantage{
+    color: black;
+    font-size: 20px;
+}
+
+
+.outro{
+    min-height: 70vh;
+    font-size: 24px;
+    text-align: center;
+    padding:10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    background-color: khaki;
+}
+
+
+/* home/contacts and contact_information......................................................... */
+
+
+
+.co_parent{
+      display: flex;
+      align-self: center;
+      margin: 20px;
+      justify-content: center;
+      align-items: center;
+      
+    }
+.contact{
+    min-width: 45%;
+    margin: 15px;
+    order: 2;
+    background-color: #c9def5da;
+}
+
+.send{
+    min-width: 45%;
+    margin: 15px;
+    order: 1;
+}
+
+.co_social{
+    padding: 10px;
+    font-size: 2em;
+    text-align: center;
+}
+
+.co_ic{
+    display: flex;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+.co_ic a{
+  font-size: 3em;
+}
+
+.co_ic a:hover{
+    background-color: goldenrod;
+}
+
+.loc{
+    margin: 15px;
+}
+
+.loc iframe{
+    max-height: 50vh;
+
+}
+
+.ci span{
+    display: block;
+}
+
+.ci{
+    display: flex;
+    padding: 5px;
+    justify-content: space-between;
+    font-size: 20px;
+}
+
+/* home/privacy & terms......................................................... */
+
+
+
+.priterm{
+    width: 90%;
+    margin: 30px auto;
+    text-align: center;
+    padding: 20px;
+    box-shadow: 10px 10px 5px 10px  rgba(65, 58, 58, 0.384);
+}
+
+
+
+
+
+
+
+/* student_info.html, admin.html, register_payment.html */
+
+
+h1 {
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+}
+
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+
+.student-details, .payment-details, .filter-form, .register_table, form {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    
+}
+
+.filter-form, .register_table {
+    overflow-x: scroll;
+
+}
+
+.filter-form form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-form label {
+    flex: 1 1 150px;
+    font-weight: bold;
+}
+
+.filter-form input, .filter-form select, .filter-form button, form input, form select, form button {
+    flex: 1 1 150px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.filter-form button, form button {
+    flex: 1 1 auto;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.register_table table, .payment-details table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    
+}
+
+.register_table th, .register_table td, .payment-details th, .payment-details td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.register_table th, .payment-details th {
+    background-color: #f2f2f2;
+}
+
+.register-payment {
+    display: block;
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    text-align: center;
+}
+
+
+/* 
+@media screen and (max-width: 550px) {
+    body {
+        background-color: red;
+    }
+
+} */
+
+@media screen and (max-width: 770px){
+    /* body{
+        background-color: wheat;
+    } */
+   
+
+/* home&base......................................................... */
+
+   
+    .m_toggle-button {
+        display: block;
+        padding: 5px;
+    }
+    
+    .menu_list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .item {
+        text-align: center;
+        margin: 2px;
+    }
+
+    .menu_list.active {
+        display: flex;
+        flex-direction: column;
+   
+    }
+
+    .home_intro{
+        flex-direction: column;
+    }
+    .intro{
+        max-width: 100%;
+    }
+    .swiper{
+        max-width: 100%;
+    }
+
+    .hc_icons{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+   
+    .c_hold{
+        margin: 5px;
+    }
+
+    .subject_holder{
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+  
+    }
+   .steps_hld{
+         flex-direction: column;
+   }
+   .step{
+    max-width: 100%;
+    margin: 15px;
+   }
+    
+.home_testimonials{
+    flex-direction: column;
+    margin: 30px 10px;
+    align-items: center;
+    justify-content: center;
+ 
+ 
+}
+
+.testimony{
+    width: 95%;
+    margin: 20px auto;
+}
+
+/* home/course......................................................... */
+
+
+.oc_courses{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    place-items: center;
+    gap: 40px;
+    padding:10px 5px;
+    
+    
+}
+/* home/course/course_about......................................................... */
+.cou_parent{
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    margin: 30px 5px;
+    padding: 5px; 
+    align-items: center;
+    justify-content: center;
+    
+}
+/* home/contact......................................................... */
+
+.co_parent{
+   flex-direction: column;
+    
+  }
+.contact, .send{
+    min-width: 100%;
+}
+/* home/partners......................................................... */
+
+.pat_inf{
+    flex-direction: column;
+
+}
+.pat_rel{
+    max-width: 100%;
+}
+.pat_pic{
+    max-width: 90%;
+    margin: 10px auto;
+}
+ /* home/subscription......................................................... */
+.sub_table{
+    font-size: 14px;
+    display: block;
+}
+
+.sub_table table th, .sub_table table td{
+    padding: 5px;
+}
+ /* home/about......................................................... */
+
+ 
+   .a_intro{
+    font-size: 14px;
+}
+
+.ab_mission{
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.globe{
+    height: 65vh;
+    width: 100%;
+}
+.mission{
+    display: block;
+    width: 100%;
+    font-size: 20px;
+}
+.ab_info{
+    font-size: 20px;
+}
+.adv_hld{
+    flex-direction: column; 
+   }
+
+   .adv,.adv_img{
+    width: 100%;
+
+}
+
+.outro{
+    height: 50vh;
+    font-size: 20px;
+
+}
+
+/* admin......................................................... */
+
+
+    .student-details, .payment-details, .filter-form, .register_table, form {
+        margin: 10px;
+        padding: 10px;
+    }
+
+    .filter-form label, .filter-form input, .filter-form select, .filter-form button, form input, form select, form button {
+        flex: 1 1 100%;
+    }
+    .payment-details table, .register_table table {
+        font-size: 12px;
+    }
+/* overal......................................................... */
+.mine_c_title, .mine_title, .mine_empty, .mod_title, .right_header, .cont_title, .std_mod, .intro_motto, .cou_title, .co_social{
+    font-size: 1.5em;
+}
+
+.std_module_manager{
+    display: flex;
+    flex-direction: column;
+}
+.std_cont{
+    max-width: 100%;
+}
+}
+
+@media screen and (max-width: 992px) and (min-width: 770.1px) {
+    /* body {
+        background-color: yellow;
+    } */
+
+/* home&base......................................................... */
+
+    .menu_list{
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+
+    .swiper{
+        height: 60vh;
+    }
+    .home_intro{
+        justify-content: space-between;
+    }
+ 
+    .hc_icons{
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+    }
+   
+    .c_hold{
+        margin: 5px;
+    }
+
+    .subject_holder{
+        max-width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+  
+    }
+   .steps_hld{
+         flex-direction: column;
+   }
+   .step{
+    max-width: 100%;
+    margin: 15px;
+   }
+    
+.home_testimonials{
+    flex-direction: column;
+    margin: 30px 10px;
+    align-items: center;
+    justify-content: center;
+ 
+ 
+}
+
+.testimony{
+    width: 95%;
+    margin: 20px auto;
+}
+
+/* home/course......................................................... */
+.oc_courses{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    place-items: center;
+    gap: 40px;
+    padding:10px 5px;
+    
+    
+}
+
+/* home/course/course_about......................................................... */
+
+.cou_parent{
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+    margin: 30px 5px;
+    padding: 5px; 
+    align-items: center;
+    justify-content: center;
+    
+}
+
+/* home/contact......................................................... */
+
+
+.co_parent{
+    flex-direction: column;
+     
+   }
+ .contact, .send{
+     min-width: 100%;
+ }
+
+
+
+ /* home/partners......................................................... */
+
+ .pat_inf{
+    flex-direction: column;
+
+}
+.pat_rel{
+    max-width: 100%;
+}
+.pat_pic{
+    max-width: 90%;
+    margin: 10px auto;
+}
+
+/* home/about......................................................... */
+
+ 
+.a_intro{
+    font-size: 16px;
+}
+
+.ab_mission{
+  flex-direction: column;
+  margin-bottom: 30px;
+}
+
+.globe{
+    height: 75vh;
+    width: 100%;
+}
+.mission{
+    display: block;
+    width: 100%;
+    font-size: 22px;
+}
+.ab_info{
+    font-size: 22px;
+}
+.adv_hld{
+    flex-direction: column; 
+   }
+
+   .adv,.adv_img{
+    width: 100%;
+
+}
+
+.outro{
+    height: 50vh;
+    font-size: 22px;
+
+}
+
+
+/* admin......................................................... */
+
+    .student-details, .payment-details, .filter-form, .register_table, form {
+        margin: 15px;
+        padding: 15px;
+    }
+
+/* overal......................................................... */
+.mine_c_title, .mine_title, .mine_empty, .mod_title, .right_header, .cont_title, .std_mod, .intro_motto, .cou_title, .co_social{
+    font-size: 1.8em;
+}
+
+.std_module_manager{
+    display: flex;
+    flex-direction: column;
+}
+.std_cont{
+    max-width: 100%;
+}
+
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 1199px) and (min-width: 992.1px) {
+    /* body {
+        background-color: chartreuse;
+    } */
+    
+/* home&base......................................................... */
+
+    .menu_list{
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+/* admin......................................................... */
+
+
+    .student-details, .payment-details, .filter-form, .register_table, form {
+        margin: 20px;
+        padding: 20px;
+    }
+}
+
+@media screen and (min-width: 1450px) {
+    /* body {
+        background-color: rgb(247, 51, 51);
+    } */
+
+    .student-details, .payment-details, .filter-form, .register_table, form {
+        margin: 30px;
+        padding: 30px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
