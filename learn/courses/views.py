@@ -653,7 +653,7 @@ def student_admision(request):
             last_name = form.cleaned_data["last_name"]
             email = form.cleaned_data["email"]
             course = form.cleaned_data["course"]
-
+            enrollment_date = form.cleaned_data["enrollment_date"]
             certificate_issued = form.cleaned_data["certificate_issued"]
 
             course_ids = request.POST.getlist("course")
@@ -667,6 +667,7 @@ def student_admision(request):
                     "last_name": last_name,
                     "email": email,
                     "password": make_password(password),  # Hashed password
+                    "enrollment_date": enrollment_date,
                 },
             )
 

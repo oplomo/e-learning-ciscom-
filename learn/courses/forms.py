@@ -15,6 +15,7 @@ class Admission_form(forms.Form):
     email = forms.EmailField()
     course = forms.ModelMultipleChoiceField(queryset=Course.objects.all())
     certificate_issued = forms.BooleanField(required=False)
+    enrollment_date = forms.DateField(required=True)
 
 
 class PaymentForm(forms.ModelForm):
