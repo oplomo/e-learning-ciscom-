@@ -478,6 +478,7 @@ iframe{
 
 .intro_links{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     padding: 5px;
 }
