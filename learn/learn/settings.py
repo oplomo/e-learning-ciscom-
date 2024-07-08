@@ -14,7 +14,9 @@ ALLOWED_HOSTS = [
     "e-learning-ciscom-1.onrender.com",
     "127.0.0.1",
     "localhost",
-]
+    ]
+
+ALLOWED_HOST = []
 
 # Application definition
 INSTALLED_APPS = [
