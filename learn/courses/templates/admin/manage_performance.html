@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% load static %}
+
+{% block content %}
+    <h1>Manage Student Performance</h1>
+    
+    <form method="get" action="{% url 'add_performance' %}">
+        <div class="form-row">
+            <label for="id_course">Select Course:</label>
+            <select name="course" id="id_course" onchange="this.form.submit()">
+                <option value="">-- Select a Course --</option>
+                {% for course in courses %}
+                    <option value="{{ course.id }}" {% if course.id|stringformat:"s" == request.GET.course %}selected{% endif %}>{{ course.title }}</option>
+                {% endfor %}
+            </select>
+        </div>
+    </form>
+    
+    {% if formset %}
+        <h2>Performance for Selected Course</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ formset.management_form }}
+            <table>
+                {% for form in formset %}
+                    <tr>
+                        <td>{{ form.student }}:</td>
+                        <td>{{ form.html_score.label_tag }} {{ form.html_score }}</td>
+                        <td>{{ form.css_score.label_tag }} {{ form.css_score }}</td>
+                        <td>{{ form.js_score.label_tag }} {{ form.js_score }}</td>
+                        <td>{{ form.overall_score.label_tag }} {{ form.overall_score }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <button type="submit">Save Performance</button>
+        </form>
+    {% else %}
+        <p>Select a course to view and add performance records.</p>
+    {% endif %}
+{% endblock %}

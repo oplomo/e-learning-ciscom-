@@ -4,6 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
 from .fields import OrderField
 from django.template.loader import render_to_string
+from django.conf import settings
 
 
 class Subject(models.Model):
@@ -19,7 +20,9 @@ class Subject(models.Model):
 
 class Course(models.Model):
     owner = models.ForeignKey(
-        User, related_name="courses_created", on_delete=models.CASCADE
+        settings.AUTH_USER_MODEL,
+        related_name="courses_created",
+        on_delete=models.CASCADE,
     )
     subject = models.ForeignKey(
         Subject, related_name="courses", on_delete=models.CASCADE
@@ -79,7 +82,9 @@ class Content(models.Model):
 
 class ItemBase(models.Model):
     owner = models.ForeignKey(
-        User, related_name="%(class)s_related", on_delete=models.CASCADE
+        settings.AUTH_USER_MODEL,
+        related_name="%(class)s_related",
+        on_delete=models.CASCADE,
     )
     title = models.CharField(max_length=250)
     created = models.DateTimeField(auto_now_add=True)
@@ -170,15 +175,18 @@ class Answer(models.Model):
 
 class Enrollment(models.Model):
     student = models.OneToOneField(
-        User, related_name="enrollments", on_delete=models.CASCADE
+        settings.AUTH_USER_MODEL, related_name="enrollments", on_delete=models.CASCADE
     )
-    course = models.ManyToManyField(Course, related_name="enrollments")
+    course = models.ManyToManyField(Course, related_name="enrollments", blank=True)
     enrollment_date = models.DateField()
-    finishing_date = models.DateTimeField(blank=True, null=True)
+    finishing_date = models.DateField(blank=True, null=True)
     certificate_issued = models.BooleanField(default=False)
+    overall_performance = models.DecimalField(
+        max_digits=5, decimal_places=2, blank=True, null=True
+    )
 
     def __str__(self):
-        return f"{self.student.username} enrolled in {', '.join(course.title for course in self.course.all())}"
+        return f"{self.student.username},{self.student.first_name},{self.student.last_name} enrolled in {', '.join(course.title for course in self.course.all())}"
 
 
 class Payment(models.Model):
@@ -192,3 +200,26 @@ class Payment(models.Model):
         return (
             f"{self.enrollment.student.username} - {self.amount} on {self.payment_date}"
         )
+
+
+class Perfomance(models.Model):
+    enrollment = models.ForeignKey(
+        Enrollment, related_name="results", on_delete=models.CASCADE
+    )
+    module = models.ForeignKey(Module, related_name="results", on_delete=models.CASCADE)
+    score = models.DecimalField(max_digits=5, decimal_places=2, null=True, blank=True)
+
+    def __str__(self):
+        return f"Result for {self.enrollment.student.username} in {self.module.title}"
+
+    class Meta:
+        unique_together = ("enrollment", "module")
+
+    @property
+    def get_module_name(self):
+        return self.module.name
+
+
+class OverallPerformance(models.Model):
+    enrollment = models.OneToOneField(Enrollment, on_delete=models.CASCADE)
+    overall_score = models.DecimalField(max_digits=5, decimal_places=2)

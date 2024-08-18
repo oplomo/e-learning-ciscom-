@@ -7,6 +7,23 @@
 
 {% block content %}
 <h1>Welcome to the Admin Site</h1>
+
+<!-- Search Form -->
+<div class="search-container">
+    <form method="GET" action="{% url 'admin_dashboard' %}">
+        <input
+            type="text"
+            id="search-input"
+            name="search_query"
+            class="search-input"
+            placeholder="Search by Username, First Name, or Last Name"
+            value="{{ search_query }}"
+            oninput="this.form.submit()" 
+        />
+    </form>
+</div>
+
+<!-- Filter Form -->
 <div class="filter-form">
     <form method="post" action="{% url 'admin_dashboard' %}">
         {% csrf_token %}
@@ -40,6 +57,7 @@
     </form>
 </div>
 
+<!-- Student Table -->
 <div class="register_table">
     <table>
         <thead>
@@ -58,9 +76,9 @@
         <tbody>
           {% for data in student_data %}
           <tr>
-              <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.username }}</a></td>
-              <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.first_name }}</a></td>
-              <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.last_name }}</a></td>
+              <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.username|upper }}</a></td>
+              <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.first_name|lower }}</a></td>
+              <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.last_name|lower }}</a></td>
               <td><a href="{% url 'student_info' data.student.id %}">{{ data.student.enrollments.enrollment_date }}</a></td>
               <td>
                   <ul>
@@ -81,7 +99,9 @@
     </table>
 </div>
 
+<!-- Download PDF Form -->
 <form method="get" action="{% url 'student_register_pdf' %}">
+    <input type="hidden" name="search_query" value="{{ search_query }}">
     <input type="hidden" name="num_courses_filter" value="{{ request.POST.num_courses_filter }}">
     <input type="hidden" name="exact_num_courses_filter" value="{{ request.POST.exact_num_courses_filter }}">
     <input type="hidden" name="certificate_issued_filter" value="{{ request.POST.certificate_issued_filter }}">

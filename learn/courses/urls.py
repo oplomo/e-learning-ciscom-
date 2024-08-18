@@ -25,6 +25,8 @@ urlpatterns = [
         views.student_payment,
         name="student_payment",
     ),
+    path("admin/perfomance", views.performance, name="perfomance"),
+    path("admin/add_performance", views.add_performance, name="add_performance"),
     path(
         "admin/student_info_pdf/<int:student_id>/",
         views.student_info_pdf,

@@ -1,8 +1,9 @@
 import os
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
+
 BASE_DIR = Path(__file__).resolve().parent.parent
+
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-)vbavmega5n7^%@74&*3)h)4cpo2jwq^*m2-1$i#c8&vr71$o$"
@@ -10,13 +11,13 @@ SECRET_KEY = "django-insecure-)vbavmega5n7^%@74&*3)h)4cpo2jwq^*m2-1$i#c8&vr71$o$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = [
-#     "e-learning-ciscom-1.onrender.com",
-#     "127.0.0.1",
-#     "localhost",
-#     ]
+ALLOWED_HOSTS = [
+    "e-learning-ciscom-1.onrender.com",
+    "127.0.0.1",
+    "localhost",
+    ]
 
-ALLOWED_HOST = []
+# ALLOWED_HOST = []
 
 # Application definition
 INSTALLED_APPS = [
@@ -27,9 +28,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "account",
     "embed_video",
     "django_extensions",
 ]
+
+AUTH_USER_MODEL = "account.CustomUser"
+
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -79,18 +84,20 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
 # Internationalization
 LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
+TIME_ZONE = "Africa/Nairobi"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "staticfiles"  # This is where 'collectstatic' will gather files
+STATIC_ROOT = (
+    BASE_DIR / "staticfiles"
+)  # This is where 'collectstatic' will gather files
 
-# Additional locations of static files
 STATICFILES_DIRS = [
     BASE_DIR / "courses/static/courses",  # Add your app's static directory here
 ]
@@ -98,6 +105,7 @@ STATICFILES_DIRS = [
 # Media files (User uploads)
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
+
 
 # Email settings
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

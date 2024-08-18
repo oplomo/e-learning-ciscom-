@@ -53,7 +53,16 @@
                 <div class="item">
                     <a href="{% url 'admin:index' %}" target="_blank">site administration</a>
                 </div>
-    
+
+                <div class="item">
+                    <a href="{% url 'perfomance' %}">performance</a>
+                </div>
+
+                {% comment %} <div class="item">
+                    <a href="{% url 'add_performance' %}">add performance</a>
+                </div>  {% endcomment %}
+
+
                 <div class="item">
                     <a href="{% url 'manage_course_list' %}">instractors dashboard</a>
                 </div>

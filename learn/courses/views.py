@@ -6,7 +6,13 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView, FormVi
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.contrib.auth.models import User, Group
-from .forms import Moduleformset, Admission_form, PaymentForm, ContactForm
+from .forms import (
+    Moduleformset,
+    Admission_form,
+    PaymentForm,
+    ContactForm,
+    CourseSelectForm,
+)
 from django.views.generic.base import TemplateResponseMixin, View
 from django.forms.models import modelform_factory
 from django.apps import apps
@@ -27,7 +33,9 @@ from .models import (
     Question,
     Answer,
     Partners,
+    Perfomance,
 )
+from account.models import CustomUser
 from decimal import Decimal
 from datetime import datetime
 from django.core.mail import send_mail
@@ -440,27 +448,43 @@ class StudentCourseDetailView(DetailView):
         return context
 
 
+from django.db.models import Q  # Import Q for complex queries
+
+
 @user_passes_test(lambda u: u.is_superuser)
 def admin_dashboard(request):
     # Get the group 'students'
     students_group = Group.objects.get(name="students")
 
     # Get all users in the 'students' group
-    students = User.objects.filter(groups=students_group)
+    students = CustomUser.objects.filter(groups=students_group)
 
     # Prefetch enrollments and related objects to minimize database hits
     students = students.prefetch_related("enrollments__course", "enrollments__payments")
 
-    # Initialize filter parameters
+    # Search functionality
+    search_query = request.GET.get(
+        "search_query", ""
+    ).strip()  # Capture the search input
+
+    if search_query:
+        # Apply filter with Q objects for complex lookups
+        students = students.filter(
+            Q(username__icontains=search_query)
+            | Q(first_name__icontains=search_query)
+            | Q(last_name__icontains=search_query)
+        )
+
+    # Additional filters based on POST data
     num_courses_filter = request.POST.get("num_courses_filter")
     exact_num_courses_filter = request.POST.get("exact_num_courses_filter")
     certificate_issued_filter = request.POST.get("certificate_issued_filter")
     course_filter = request.POST.get("course_filter")
-    start_date_filter = request.POST.get("start_date_filter")  # Start date filter
-    end_date_filter = request.POST.get("end_date_filter")  # End date filter
-    fee_balance_filter = request.POST.get("fee_balance_filter")  # Fee balance filter
+    start_date_filter = request.POST.get("start_date_filter")
+    end_date_filter = request.POST.get("end_date_filter")
+    fee_balance_filter = request.POST.get("fee_balance_filter")
 
-    # Apply filters based on POST data
+    # Apply additional filters based on POST data
     if num_courses_filter:
         students = students.annotate(
             num_courses=Count("enrollments__course", distinct=True)
@@ -529,13 +553,14 @@ def admin_dashboard(request):
     context = {
         "student_data": student_data,
         "courses": courses,  # Provide course titles for the dropdown
+        "search_query": search_query,  # Pass the search query to the template
     }
     return render(request, "admin/student_register.html", context)
 
 
 def student_register_pdf(request):
     students_group = Group.objects.get(name="students")
-    students = User.objects.filter(groups=students_group)
+    students = CustomUser.objects.filter(groups=students_group)
     students = students.prefetch_related("enrollments__course", "enrollments__payments")
 
     num_courses_filter = request.GET.get("num_courses_filter")
@@ -651,15 +676,16 @@ def student_admision(request):
             username = form.cleaned_data["username"]
             first_name = form.cleaned_data["first_name"]
             last_name = form.cleaned_data["last_name"]
-            email = form.cleaned_data["email"]
+            email = form.cleaned_data.get("email")
             course = form.cleaned_data["course"]
             enrollment_date = form.cleaned_data["enrollment_date"]
             certificate_issued = form.cleaned_data["certificate_issued"]
+            finishing_date = form.cleaned_data.get("finishing_date")
 
             course_ids = request.POST.getlist("course")
 
             password = username
-            user, created = User.objects.get_or_create(
+            user, created = CustomUser.objects.get_or_create(
                 username=username,
                 defaults={
                     "username": username,
@@ -667,7 +693,6 @@ def student_admision(request):
                     "last_name": last_name,
                     "email": email,
                     "password": make_password(password),  # Hashed password
-                    "enrollment_date": enrollment_date,
                 },
             )
 
@@ -676,17 +701,38 @@ def student_admision(request):
 
             selected_courses = Course.objects.filter(id__in=course_ids)
 
-            enrollment = Enrollment.objects.create(
+            # Check if the enrollment already exists for the user
+            enrollment, enrollment_created = Enrollment.objects.get_or_create(
                 student=user,
-                certificate_issued=certificate_issued,
+                defaults={
+                    "certificate_issued": certificate_issued,
+                    "enrollment_date": enrollment_date,
+                    "finishing_date": finishing_date,
+                },
             )
-            enrollment.course.add(*selected_courses)
+
+            if not enrollment_created:
+                # Update the existing enrollment if it exists
+                enrollment.certificate_issued = certificate_issued
+                enrollment.enrollment_date = enrollment_date
+                enrollment.finishing_date = finishing_date
+                enrollment.course.set(selected_courses)  # Update courses
+                enrollment.save()
+            else:
+                enrollment.course.add(*selected_courses)
 
             enrolled_courses = ", ".join(
                 [course.title for course in enrollment.course.all()]
             )
-            subject = "successful enrollment"
-            message = f"Dear {first_name},\n\nWe are thrilled to inform you that you have successfully registered at {school.name} and enrolled in the following courses:\n\n{enrolled_courses}.\n\nYour username is {username} and your password is {password}.\n\nPlease use this information to log in to your account and access your learning materials.\n\nWishing you the best of luck as you embark on your educational journey with us!"
+            subject = "Successful Enrollment"
+            message = (
+                f"Dear {first_name},\n\n"
+                f"We are thrilled to inform you that you have successfully registered at {school.name} "
+                f"and enrolled in the following courses:\n\n{enrolled_courses}.\n\n"
+                f"Your username is {username} and your password is {password}.\n\n"
+                f"Please use this information to log in to your account and access your learning materials.\n\n"
+                f"Wishing you the best of luck as you embark on your educational journey with us!"
+            )
             From = settings.EMAIL_HOST_USER
             TO = [email]
 
@@ -697,9 +743,12 @@ def student_admision(request):
                 course.title.lower() == "cisco certified network associate (ccna)"
                 for course in selected_courses
             ):
-                message += f"\nFor Cisco courses, international certification is offered as well as granted permision to learn on cisco website. For more information or inquiries, please contact the admin\n\n"
+                message += (
+                    f"\nFor Cisco courses, international certification is offered as well as permission to learn on Cisco website. "
+                    f"For more information or inquiries, please contact the admin\n\n"
+                )
 
-            message += "\n\nWarm regards,\nThe {school.name} Team"
+            message += f"\n\nWarm regards,\nThe {school.name} Team"
 
             send_mail(
                 subject,
@@ -724,15 +773,17 @@ def student_admision(request):
             # )
 
             return redirect("admin_dashboard")
+
     else:
         form = Admission_form()
+
     return render(
         request, "admin/student_registration.html", {"form": form, "courses": courses}
     )
 
 
 def student_info(request, student_id):
-    student = get_object_or_404(User, pk=student_id)
+    student = get_object_or_404(CustomUser, pk=student_id)
     enrollments = Enrollment.objects.filter(student=student)
     payments = Payment.objects.filter(enrollment__in=enrollments)
 
@@ -775,7 +826,7 @@ def student_payment(request, enrollment_id):
 
 
 def student_info_pdf(request, student_id):
-    student = get_object_or_404(User, pk=student_id)
+    student = get_object_or_404(CustomUser, pk=student_id)
     enrollments = Enrollment.objects.filter(student=student)
     payments = Payment.objects.filter(enrollment__in=enrollments)
 
@@ -807,7 +858,174 @@ def student_info_pdf(request, student_id):
     return response
 
 
-# def check_data(request):
-#     co = get_object_or_404(Course, pk=1)
+from django.db.models import Q, Avg, F
+from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from .models import Enrollment, Perfomance, OverallPerformance, Course
 
-#     return render(request, "check_data.html", {"co": co})
+CustomUser = get_user_model()
+
+
+def performance(request):
+    search_query = request.GET.get("search_query", "").strip()
+    score_greater_than = request.GET.get("score_greater_than", "")
+    score_less_than = request.GET.get("score_less_than", "")
+    course_filter = request.GET.get("course_filter", "")
+    start_date_filter = request.GET.get("start_date_filter", "")
+    end_date_filter = request.GET.get("end_date_filter", "")
+
+    # Filter students who are part of the 'students' group
+    students = CustomUser.objects.filter(groups__name="students")
+
+    # Start with all enrollments related to students
+    enrollments = Enrollment.objects.filter(student__in=students)
+
+    # Apply search query
+    if search_query:
+        enrollments = enrollments.filter(
+            Q(student__username__icontains=search_query)
+            | Q(course__title__icontains=search_query)
+        )
+
+    # Apply score filters
+    if score_greater_than:
+        enrollments = enrollments.filter(results__score__gte=score_greater_than)
+    if score_less_than:
+        enrollments = enrollments.filter(results__score__lte=score_less_than)
+
+    # Apply course filter
+    if course_filter:
+        enrollments = enrollments.filter(course__title=course_filter)
+
+    # Apply date filters
+    if start_date_filter:
+        enrollments = enrollments.filter(enrollment_date__gte=start_date_filter)
+    if end_date_filter:
+        enrollments = enrollments.filter(enrollment_date__lte=end_date_filter)
+
+    # Use distinct() to remove duplicates
+    enrollments = enrollments.distinct()
+
+    # Aggregate performance data
+    student_data = []
+    for enrollment in enrollments:
+        performances = Perfomance.objects.filter(enrollment=enrollment)
+        overall_performance = OverallPerformance.objects.filter(
+            enrollment=enrollment
+        ).first()
+
+        student_data.append(
+            {
+                "student": enrollment.student,
+                "overall_performance": (
+                    overall_performance.overall_score if overall_performance else "N/A"
+                ),
+                "enrollments": enrollment,
+                "performances": performances,
+            }
+        )
+
+    return render(
+        request,
+        "admin/performance.html",
+        {
+            "student_data": student_data,
+            "search_query": search_query,
+            "courses": Course.objects.all(),
+            "score_greater_than": score_greater_than,
+            "score_less_than": score_less_than,
+            "course_filter": course_filter,
+            "start_date_filter": start_date_filter,
+            "end_date_filter": end_date_filter,
+        },
+    )
+
+
+from django.shortcuts import render
+from django.contrib.auth import get_user_model
+from .models import Enrollment, Perfomance, OverallPerformance, Course
+
+CustomUser = get_user_model()
+
+
+def performance(request):
+    search_query = request.GET.get("search_query", "").strip()
+    score_greater_than = request.GET.get("score_greater_than", "")
+    score_less_than = request.GET.get("score_less_than", "")
+    course_filter = request.GET.get("course_filter", "")
+    start_date_filter = request.GET.get("start_date_filter", "")
+    end_date_filter = request.GET.get("end_date_filter", "")
+
+    # Filter students who are part of the 'students' group
+    students = CustomUser.objects.filter(groups__name="students")
+
+    # Filter enrollments based on search criteria
+    enrollments = Enrollment.objects.filter(student__in=students)
+
+    if search_query:
+        enrollments = enrollments.filter(
+            Q(student__username__icontains=search_query)
+            | Q(student__first_name__icontains=search_query)
+            | Q(student__last_name__icontains=search_query)
+            | Q(course__title__icontains=search_query)
+        )
+
+    # Filter by score
+    if score_greater_than:
+        enrollments = enrollments.filter(
+            overallperformance__overall_score__gte=score_greater_than
+        )
+    if score_less_than:
+        enrollments = enrollments.filter(
+            overallperformance__overall_score__lte=score_less_than
+        )
+
+    # Filter by course
+    if course_filter:
+        enrollments = enrollments.filter(course__title=course_filter)
+
+    if start_date_filter:
+        enrollments = enrollments.filter(enrollment_date__gte=start_date_filter)
+    if end_date_filter:
+        enrollments = enrollments.filter(enrollment_date__lte=end_date_filter)
+
+    # Ensure distinct enrollments
+    enrollments = enrollments.distinct()
+
+    # Aggregate performance data
+    student_data = []
+    for enrollment in enrollments:
+        performances = Perfomance.objects.filter(enrollment=enrollment)
+        overall_performance = OverallPerformance.objects.filter(
+            enrollment=enrollment
+        ).first()
+
+        student_data.append(
+            {
+                "student": enrollment.student,
+                "overall_performance": (
+                    overall_performance.overall_score if overall_performance else "N/A"
+                ),
+                "enrollments": enrollment,
+                "performances": performances,
+            }
+        )
+
+    return render(
+        request,
+        "admin/performance.html",
+        {
+            "student_data": student_data,
+            "search_query": search_query,
+            "courses": Course.objects.all(),
+            "score_greater_than": score_greater_than,
+            "score_less_than": score_less_than,
+            "course_filter": course_filter,
+            "start_date_filter": start_date_filter,
+            "end_date_filter": end_date_filter,
+        },
+    )
+
+
+def add_performance(request):
+    return render(request, "admin/manage_performance.html")

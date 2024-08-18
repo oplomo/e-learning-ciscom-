@@ -1,9 +1,11 @@
+
+
 from django.contrib import admin
 from django import forms
 from django.contrib.auth.models import Group
-from .models import Course, Enrollment, User
+from .models import Course, Enrollment
+from account.models import CustomUser
 from django.contrib.auth.admin import UserAdmin
-
 
 from .models import (
     Subject,
@@ -21,6 +23,7 @@ from .models import (
     Answer,
     Enrollment,
     Payment,
+    Perfomance,
 )
 
 
@@ -35,13 +38,8 @@ class CustomUserAdmin(UserAdmin):
 
 
 # Unregister the original User admin and register the new one
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
-
-
-# Unregister the original User admin and register the new one
-admin.site.unregister(User)
-admin.site.register(User, CustomUserAdmin)
+# admin.site.unregister(CustomUser)
+admin.site.register(CustomUser, CustomUserAdmin)
 
 
 @admin.register(Subject)
@@ -80,28 +78,38 @@ class ContentAdmin(admin.ModelAdmin):
     list_filter = ("module", "content_type")
 
 
-# @admin.register(Text)
-# class TextAdmin(admin.ModelAdmin):
-#     # list_display = ('title', 'owner', 'created')
-#     pass
-# @admin.register(File)
-# class FileAdmin(admin.ModelAdmin):
-#     # list_display = ('title', 'owner', 'created')
-#      pass
-# @admin.register(Image)
-# class ImageAdmin(admin.ModelAdmin):
-#     # list_display = ('title', 'owner', 'created')
-#      pass
-# @admin.register(Video)
-# class VideoAdmin(admin.ModelAdmin):
-#     # list_display = ('title', 'owner', 'created')
-#      pass
-
-
 @admin.register(Partners)
 class PartnerAdmin(admin.ModelAdmin):
     list_display = ("name", "website")
     search_fields = ("name",)
+
+
+
+
+from django.contrib import admin
+from .models import Enrollment, Perfomance, Module, OverallPerformance
+
+
+class PerformanceInline(admin.TabularInline):
+    model = Perfomance
+    extra = 1
+    fields = ("module", "score")
+
+    def get_formset(self, request, obj=None, **kwargs):
+        formset = super().get_formset(request, obj, **kwargs)
+        if obj:
+            # Get the courses related to the enrollment
+            courses = obj.course.all()
+            # Get modules related to the courses
+            modules = Module.objects.filter(course__in=courses)
+            formset.form.base_fields["module"].queryset = modules
+        return formset
+
+
+class OverallPerformanceInline(admin.StackedInline):
+    model = OverallPerformance
+    extra = 1
+    fields = ("overall_score",)
 
 
 class EnrollmentAdminForm(forms.ModelForm):
@@ -128,18 +136,31 @@ class EnrollmentAdminForm(forms.ModelForm):
 
 class EnrollmentAdmin(admin.ModelAdmin):
     form = EnrollmentAdminForm
+
+    def student_full_name(self, obj):
+        return f"{obj.student.first_name} {obj.student.last_name}"
+
+    student_full_name.short_description = "Student Name"
+
+    def display_courses(self, obj):
+        return ", ".join([course.title for course in obj.course.all()])
+
+    display_courses.short_description = "Courses Enrolled"
+
     list_display = (
-        "student",
+        "student_full_name",
         "enrollment_date",
         "certificate_issued",
+        "display_courses",
     )
     list_filter = ("certificate_issued", "enrollment_date", "course")
     search_fields = ("student__username", "course__title")
+    inlines = [PerformanceInline, OverallPerformanceInline]
 
-    def display_courses(self, obj):
-        return ", ".join([course.title for course in obj.courses.all()])
-
-    display_courses.short_description = "Courses Enrolled"
+    def get_queryset(self, request):
+        qs = super().get_queryset(request)
+        # Exclude enrollments that already have results
+        return qs.filter(results__isnull=True)
 
     def save_model(self, request, obj, form, change):
         # Save the enrollment object
@@ -151,6 +172,7 @@ class EnrollmentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Enrollment, EnrollmentAdmin)
+admin.site.register(Module)
 
 
 @admin.register(Payment)
@@ -168,3 +190,23 @@ class QuestionAdmin(admin.ModelAdmin):
 @admin.register(Answer)
 class AnswerAdmin(admin.ModelAdmin):
     list_display = ("question", "answer")
+
+
+from django.contrib import admin
+from .models import Perfomance, Enrollment, Module
+
+
+class PerformanceAdmin(admin.ModelAdmin):
+    list_display = ("enrollment", "module", "score")
+    list_filter = ("module", "enrollment")
+    search_fields = ("enrollment__student__username", "module__title")
+
+
+admin.site.register(Perfomance, PerformanceAdmin)
+
+
+
+@admin.register(OverallPerformance)
+class OverallPerformanceAdmin(admin.ModelAdmin):
+    list_display = ("enrollment", "overall_score")
+    search_fields = ("enrollment",)
