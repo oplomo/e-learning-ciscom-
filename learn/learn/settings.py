@@ -12,8 +12,10 @@ SECRET_KEY = "django-insecure-)vbavmega5n7^%@74&*3)h)4cpo2jwq^*m2-1$i#c8&vr71$o$
 DEBUG = True
 ALLOWED_HOSTS = ['e-learning-ciscom-1.onrender.com', 'localhost', '127.0.0.1']
 
+ALLOWED_HOSTS = ['e-learning-ciscom-1.onrender.com', 'localhost', '127.0.0.1']
 
-# ALLOWED_HOST = []
+
+## ALLOWED_HOST = []
 
 
 # Application definition
