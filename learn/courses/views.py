@@ -782,24 +782,39 @@ def student_admision(request):
     )
 
 
+from django.db.models import Prefetch
+
+
+from django.shortcuts import render, get_object_or_404
+from .models import Enrollment, Perfomance, OverallPerformance
+
+
 def student_info(request, student_id):
     student = get_object_or_404(CustomUser, pk=student_id)
     enrollments = Enrollment.objects.filter(student=student)
-    payments = Payment.objects.filter(enrollment__in=enrollments)
+    performances = Perfomance.objects.filter(enrollment__in=enrollments)
 
-    total_amount = sum(
-        course.fee for enrollment in enrollments for course in enrollment.course.all()
-    )
-    total_paid = sum(payment.amount for payment in payments)
-    total_balance = total_amount - total_paid
+    overall_performances = {}
+    for enrollment in enrollments:
+        try:
+            overall_performance = OverallPerformance.objects.get(enrollment=enrollment)
+            # Add status calculation
+            status = overall_performance.get_status()
+            overall_performances[enrollment.id] = {
+                "overall_score": overall_performance.overall_score,
+                "status": status,
+            }
+        except OverallPerformance.DoesNotExist:
+            overall_performances[enrollment.id] = {
+                "overall_score": None,
+                "status": "N/A",
+            }
 
     context = {
         "student": student,
         "enrollments": enrollments,
-        "payments": payments,
-        "total_amount": total_amount,
-        "total_paid": total_paid,
-        "total_balance": total_balance,
+        "performances": performances,
+        "overall_performances": overall_performances,
     }
     return render(request, "admin/student_info.html", context)
 
@@ -825,6 +840,12 @@ def student_payment(request, enrollment_id):
     return render(request, "admin/student_payment.html", context)
 
 
+from django.template.loader import render_to_string
+from django.http import HttpResponse
+from xhtml2pdf import pisa
+from django.shortcuts import get_object_or_404
+
+
 def student_info_pdf(request, student_id):
     student = get_object_or_404(CustomUser, pk=student_id)
     enrollments = Enrollment.objects.filter(student=student)
@@ -836,6 +857,16 @@ def student_info_pdf(request, student_id):
     total_paid = sum(payment.amount for payment in payments)
     total_balance = total_amount - total_paid
 
+    # Get overall performances
+    overall_performances = {}
+    for enrollment in enrollments:
+        try:
+            overall_performances[enrollment.id] = OverallPerformance.objects.get(
+                enrollment=enrollment
+            )
+        except OverallPerformance.DoesNotExist:
+            overall_performances[enrollment.id] = None
+
     context = {
         "student": student,
         "enrollments": enrollments,
@@ -843,6 +874,7 @@ def student_info_pdf(request, student_id):
         "total_amount": total_amount,
         "total_paid": total_paid,
         "total_balance": total_balance,
+        "overall_performances": overall_performances,
     }
 
     html = render_to_string("admin/student_info_pdf.html", context)
@@ -858,7 +890,6 @@ def student_info_pdf(request, student_id):
     return response
 
 
-from django.db.models import Q, Avg, F
 from django.shortcuts import render
 from django.contrib.auth import get_user_model
 from .models import Enrollment, Perfomance, OverallPerformance, Course
@@ -874,92 +905,7 @@ def performance(request):
     start_date_filter = request.GET.get("start_date_filter", "")
     end_date_filter = request.GET.get("end_date_filter", "")
 
-    # Filter students who are part of the 'students' group
     students = CustomUser.objects.filter(groups__name="students")
-
-    # Start with all enrollments related to students
-    enrollments = Enrollment.objects.filter(student__in=students)
-
-    # Apply search query
-    if search_query:
-        enrollments = enrollments.filter(
-            Q(student__username__icontains=search_query)
-            | Q(course__title__icontains=search_query)
-        )
-
-    # Apply score filters
-    if score_greater_than:
-        enrollments = enrollments.filter(results__score__gte=score_greater_than)
-    if score_less_than:
-        enrollments = enrollments.filter(results__score__lte=score_less_than)
-
-    # Apply course filter
-    if course_filter:
-        enrollments = enrollments.filter(course__title=course_filter)
-
-    # Apply date filters
-    if start_date_filter:
-        enrollments = enrollments.filter(enrollment_date__gte=start_date_filter)
-    if end_date_filter:
-        enrollments = enrollments.filter(enrollment_date__lte=end_date_filter)
-
-    # Use distinct() to remove duplicates
-    enrollments = enrollments.distinct()
-
-    # Aggregate performance data
-    student_data = []
-    for enrollment in enrollments:
-        performances = Perfomance.objects.filter(enrollment=enrollment)
-        overall_performance = OverallPerformance.objects.filter(
-            enrollment=enrollment
-        ).first()
-
-        student_data.append(
-            {
-                "student": enrollment.student,
-                "overall_performance": (
-                    overall_performance.overall_score if overall_performance else "N/A"
-                ),
-                "enrollments": enrollment,
-                "performances": performances,
-            }
-        )
-
-    return render(
-        request,
-        "admin/performance.html",
-        {
-            "student_data": student_data,
-            "search_query": search_query,
-            "courses": Course.objects.all(),
-            "score_greater_than": score_greater_than,
-            "score_less_than": score_less_than,
-            "course_filter": course_filter,
-            "start_date_filter": start_date_filter,
-            "end_date_filter": end_date_filter,
-        },
-    )
-
-
-from django.shortcuts import render
-from django.contrib.auth import get_user_model
-from .models import Enrollment, Perfomance, OverallPerformance, Course
-
-CustomUser = get_user_model()
-
-
-def performance(request):
-    search_query = request.GET.get("search_query", "").strip()
-    score_greater_than = request.GET.get("score_greater_than", "")
-    score_less_than = request.GET.get("score_less_than", "")
-    course_filter = request.GET.get("course_filter", "")
-    start_date_filter = request.GET.get("start_date_filter", "")
-    end_date_filter = request.GET.get("end_date_filter", "")
-
-    # Filter students who are part of the 'students' group
-    students = CustomUser.objects.filter(groups__name="students")
-
-    # Filter enrollments based on search criteria
     enrollments = Enrollment.objects.filter(student__in=students)
 
     if search_query:
@@ -970,7 +916,6 @@ def performance(request):
             | Q(course__title__icontains=search_query)
         )
 
-    # Filter by score
     if score_greater_than:
         enrollments = enrollments.filter(
             overallperformance__overall_score__gte=score_greater_than
@@ -980,7 +925,6 @@ def performance(request):
             overallperformance__overall_score__lte=score_less_than
         )
 
-    # Filter by course
     if course_filter:
         enrollments = enrollments.filter(course__title=course_filter)
 
@@ -989,10 +933,8 @@ def performance(request):
     if end_date_filter:
         enrollments = enrollments.filter(enrollment_date__lte=end_date_filter)
 
-    # Ensure distinct enrollments
     enrollments = enrollments.distinct()
 
-    # Aggregate performance data
     student_data = []
     for enrollment in enrollments:
         performances = Perfomance.objects.filter(enrollment=enrollment)
@@ -1003,11 +945,14 @@ def performance(request):
         student_data.append(
             {
                 "student": enrollment.student,
-                "overall_performance": (
-                    overall_performance.overall_score if overall_performance else "N/A"
+                "status": (
+                    overall_performance.get_status() if overall_performance else "N/A"
                 ),
                 "enrollments": enrollment,
                 "performances": performances,
+                "overall_score": (
+                    overall_performance.overall_score if overall_performance else None
+                ),
             }
         )
 

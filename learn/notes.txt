@@ -1,0 +1,2 @@
+for students whose username/ids were not known, their paswords were set to "tmp/{shortform for course}" eg. astudent doing coputer packages
+had his/her paswword set to "tmp/cp"

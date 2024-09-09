@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load course %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +9,7 @@
         body {
             font-family: Arial, sans-serif;
         }
-        .student-details, .payment-details {
+        .student-details, .payment-details, .performance-details {
             margin-bottom: 20px;
         }
         h1, h2, h3 {
@@ -49,6 +49,56 @@
             {% endfor %}
         {% endfor %}
     </ul>
+</div>
+
+<div class="performance-details">
+    <h3>Performance Details</h3>
+    {% if enrollments %}
+    <table>
+        <thead>
+            <tr>
+                <th>Module</th>
+                <th>Score</th>
+                <th>Overall Score</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for enrollment in enrollments %}
+                {% with overall_performance=overall_performances|get_item:enrollment.id %}
+                {% if overall_performance %}
+                {% for performance in performances %}
+                    {% if performance.enrollment.id == enrollment.id %}
+                    <tr>
+                        <td>{{ performance.module.title }}</td>
+                        <td><b>{{ performance.score }}</b></td>
+                        {% if forloop.first %}
+                        <td rowspan="{{ enrollments.count }}">
+                            {{ overall_performance.overall_score }}
+                        </td>
+                        <td rowspan="{{ enrollments.count }}">
+                            {{ overall_performance.status }}
+                        </td>
+                        {% endif %}
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="4">No performance records available.</td>
+                </tr>
+                {% endif %}
+                {% endwith %}
+            {% empty %}
+                <tr>
+                    <td colspan="4">No performance records available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>No enrollments found for this student.</p>
+    {% endif %}
 </div>
 
 <div class="payment-details">

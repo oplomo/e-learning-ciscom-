@@ -1,5 +1,3 @@
-
-
 from django.contrib import admin
 from django import forms
 from django.contrib.auth.models import Group
@@ -84,15 +82,13 @@ class PartnerAdmin(admin.ModelAdmin):
     search_fields = ("name",)
 
 
-
-
 from django.contrib import admin
 from .models import Enrollment, Perfomance, Module, OverallPerformance
 
 
 class PerformanceInline(admin.TabularInline):
     model = Perfomance
-    extra = 1
+    extra = 7
     fields = ("module", "score")
 
     def get_formset(self, request, obj=None, **kwargs):
@@ -145,16 +141,27 @@ class EnrollmentAdmin(admin.ModelAdmin):
     def display_courses(self, obj):
         return ", ".join([course.title for course in obj.course.all()])
 
+    def student_username(self, obj):
+        return obj.student.username
+
+    student_username.short_description = "Username"
+
     display_courses.short_description = "Courses Enrolled"
 
     list_display = (
+        "student_username",
         "student_full_name",
         "enrollment_date",
         "certificate_issued",
         "display_courses",
     )
     list_filter = ("certificate_issued", "enrollment_date", "course")
-    search_fields = ("student__username", "course__title")
+    search_fields = (
+        "student__username",
+        "course__title",
+        "student__first_name",
+        "student__last_name",
+    )
     inlines = [PerformanceInline, OverallPerformanceInline]
 
     def get_queryset(self, request):
@@ -203,7 +210,6 @@ class PerformanceAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Perfomance, PerformanceAdmin)
-
 
 
 @admin.register(OverallPerformance)

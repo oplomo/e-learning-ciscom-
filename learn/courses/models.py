@@ -5,6 +5,8 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from .fields import OrderField
 from django.template.loader import render_to_string
 from django.conf import settings
+from django.db.models import Sum
+from decimal import Decimal
 
 
 class Subject(models.Model):
@@ -219,7 +221,53 @@ class Perfomance(models.Model):
     def get_module_name(self):
         return self.module.name
 
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)  # Save the current score first
+
+        # Calculate the total score for the enrollment
+        total_score = self.enrollment.results.aggregate(
+            total=Sum("score", default=Decimal(0))
+        )["total"] or Decimal(0)
+
+        # Ensure the overall performance record exists
+        overall_performance, created = OverallPerformance.objects.get_or_create(
+            enrollment=self.enrollment
+        )
+
+        # Update the overall score, providing a default of 0.00 if the total_score is None
+        overall_performance.overall_score = (
+            total_score if total_score is not None else Decimal("0.00")
+        )
+        overall_performance.save()
+
 
 class OverallPerformance(models.Model):
     enrollment = models.OneToOneField(Enrollment, on_delete=models.CASCADE)
-    overall_score = models.DecimalField(max_digits=5, decimal_places=2)
+    overall_score = models.DecimalField(
+        max_digits=5, decimal_places=2, default=Decimal("0.00")
+    )
+
+    def get_average_score(self):
+        # Calculate the number of module scores
+        num_modules = self.enrollment.results.count()
+
+        if num_modules == 0:
+            return Decimal("0.00")
+
+        # Calculate the average score
+        average_score = self.overall_score / num_modules
+        return average_score
+
+    def get_status(self):
+        average_score = self.get_average_score()
+
+        if average_score >= 90:
+            return "Excellent"
+        elif 80 <= average_score < 90:
+            return "Distinction"
+        elif 70 <= average_score < 80:
+            return "Credit"
+        elif 60 <= average_score < 70:
+            return "Pass"
+        else:
+            return "Fail"
