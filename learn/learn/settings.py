@@ -81,6 +81,7 @@ AUTH_PASSWORD_VALIDATORS = [
             "min_length": 4,  # Set minimum password length to 4
         },
     },
+    
 ]
 
 

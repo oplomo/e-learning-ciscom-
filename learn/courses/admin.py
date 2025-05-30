@@ -28,6 +28,7 @@ from .models import (
 class EnrollmentInline(admin.StackedInline):
     model = Enrollment
     can_delete = False
+    
     verbose_name_plural = "Enrollment"
 
 
